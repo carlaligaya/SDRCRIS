@@ -31,7 +31,6 @@ public class DeactivateUserType extends BaseServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -74,11 +73,18 @@ public class DeactivateUserType extends BaseServlet {
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         UserDAO uDAO = new UserDAO();
+        PrintWriter out = response.getWriter();
 
         if (uDAO.deactivateType(Integer.parseInt(request.getParameter("utID")))) {
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/reg_user_types.jsp");
-            dispatcher.forward(request, response);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User Type Successfully Deactivated!');");
+            out.println("location='reg_user_types.jsp';");
+            out.println("</script>");
+        } else {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User Type Deactivation Unseccessful!');");
+            out.println("location='reg_user_types.jsp';");
+            out.println("</script>");
         }
     }
 

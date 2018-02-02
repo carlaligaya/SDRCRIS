@@ -74,8 +74,7 @@ public class AddUserType extends BaseServlet {
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatcher;
+        PrintWriter out = response.getWriter();
 
         UserDAO u = new UserDAO();
         UserTypes ut = new UserTypes();
@@ -84,9 +83,15 @@ public class AddUserType extends BaseServlet {
         ut.setDescription(request.getParameter("description"));
 
         if (u.addType(ut)) {
-            context = getServletContext();
-            dispatcher = context.getRequestDispatcher("/reg_user_types.jsp");
-            dispatcher.forward(request, response);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User Type Successfully Added!');");
+            out.println("location='reg_user_types.jsp';");
+            out.println("</script>");
+        } else {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User Type Unsuccessfully Added!');");
+            out.println("location='reg_user_types.jsp';");
+            out.println("</script>");
         }
     }
 

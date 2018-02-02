@@ -74,6 +74,7 @@ public class AddProjectRole extends BaseServlet {
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         ServletContext context = getServletContext();
         RequestDispatcher dispatcher;
 
@@ -84,9 +85,15 @@ public class AddProjectRole extends BaseServlet {
         r.setDescription(request.getParameter("description"));
 
         if (rd.addRole(r)) {
-            context = getServletContext();
-            dispatcher = context.getRequestDispatcher("/reg_project_role.jsp");
-            dispatcher.forward(request, response);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Role Successfully Added!');");
+            out.println("location='reg_project_role.jsp';");
+            out.println("</script>");
+        } else {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Role Unsuccessfully Added!');");
+            out.println("location='reg_project_role.jsp';");
+            out.println("</script>");
         }
     }
 

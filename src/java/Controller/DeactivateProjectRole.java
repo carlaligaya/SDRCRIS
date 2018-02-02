@@ -73,11 +73,18 @@ public class DeactivateProjectRole extends BaseServlet {
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         RolesDAO rDAO = new RolesDAO();
+        PrintWriter out = response.getWriter();
 
         if (rDAO.DeactivateRole(Integer.parseInt(request.getParameter("rID")))) {
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/reg_project_role.jsp");
-            dispatcher.forward(request, response);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Role Successfully Deactivated!');");
+            out.println("location='reg_project_role.jsp';");
+            out.println("</script>");
+        } else {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Role Deactivation Unseccessful!');");
+            out.println("location='reg_project_role.jsp';");
+            out.println("</script>");
         }
     }
 

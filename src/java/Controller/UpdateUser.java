@@ -73,12 +73,13 @@ public class UpdateUser extends BaseServlet {
 
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
         UserDAO uDAO = new UserDAO();
         User u = new User();
 
-        PrintWriter out = response.getWriter();
-
-        if (session.getAttribute("user") != null) {
+        if (session.getAttribute("IDuser") != null) {
             u.setUserID(Integer.parseInt(session.getAttribute("IDuser").toString()));
         } else {
             u.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
@@ -98,12 +99,24 @@ public class UpdateUser extends BaseServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/manage_user.jsp");
                 dispatcher.forward(request, response);
-            } else {
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('Passwords did not match!');");
-                out.println("location='update_user.jsp';");
-                out.println("</script>");
+
+                if (session.getAttribute("IDuser") != null) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('User Details Successfully Updated!');");
+                    out.println("location='manage_user.jsp';");
+                    out.println("</script>");
+                } else {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('User Details Successfully Updated!');");
+                    out.println("location='update_user.jsp';");
+                    out.println("</script>");
+                }
             }
+        } else {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Passwords did not match!');");
+            out.println("location='update_user.jsp';");
+            out.println("</script>");
         }
     }
 

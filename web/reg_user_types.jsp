@@ -150,7 +150,7 @@
                                                                                 <tr>
                                                                                     <td><%= types.get(i).getName()%></td>
                                                                                     <td><%= types.get(i).getDescription()%></td>
-                                                                                    <td><button type="submit" class="btn btn-warning" value="<%= types.get(i).getUsertype()%>" name="utID">DELETE</button></td>
+                                                                                    <td><button type="submit" class="btn btn-warning" value="<%= types.get(i).getUsertype()%>" name="utID">Deactivate</button></td>
                                                                                 </tr>
                                                                                 <%}%>
                                                                             </tbody>

@@ -146,61 +146,56 @@
                                                                         </select>
                                                                     </div> 
                                                                     <input type="submit" class="btn btn-info pull left" value="Update User">
-
-
-                                                                    </div>                                              
                                                                 </form>
+                                                            </div>                                              
+                                                        </div>							
+                                                        <ul class="list-separated list-inline-xs hide">
 
-                                                            </div>							
+                                                        </ul>
 
-
-                                                            <ul class="list-separated list-inline-xs hide">
-
-                                                            </ul>
-
-                                                        </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                        </div>
 
+                                        </div>
                                     </div>
 
-
                                 </div>
-                                <!-- END PAGE CONTENT INNER -->
+
+
                             </div>
+                            <!-- END PAGE CONTENT INNER -->
                         </div>
-                        <!-- END PAGE CONTENT BODY -->
-                        <!-- END CONTENT BODY -->
                     </div>
-                    <!-- END CONTENT -->
-                    <!-- BEGIN QUICK SIDEBAR -->
-                    <a href="javascript:;" class="page-quick-sidebar-toggler">
-                        <i class="icon-login"></i>
-                    </a>
-
-                    <!-- END QUICK SIDEBAR -->
+                    <!-- END PAGE CONTENT BODY -->
+                    <!-- END CONTENT BODY -->
                 </div>
-                <!-- END CONTAINER -->
-            </div>
-        </div>
-        <div class="page-wrapper-row">
-            <div class="page-wrapper-bottom">
-                <!-- BEGIN FOOTER -->
+                <!-- END CONTENT -->
+                <!-- BEGIN QUICK SIDEBAR -->
+                <a href="javascript:;" class="page-quick-sidebar-toggler">
+                    <i class="icon-login"></i>
+                </a>
 
-                <jsp:include page="functions/footer.jsp" />
-                <!-- END FOOTER -->
+                <!-- END QUICK SIDEBAR -->
             </div>
+            <!-- END CONTAINER -->
         </div>
     </div>
-    <!--[if lt IE 9]>
+    <div class="page-wrapper-row">
+        <div class="page-wrapper-bottom">
+            <!-- BEGIN FOOTER -->
+
+            <jsp:include page="functions/footer.jsp" />
+            <!-- END FOOTER -->
+        </div>
+    </div>
+</div>
+<!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
 <script src="assets/global/plugins/excanvas.min.js"></script> 
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
-    <jsp:include page="dependencies/bottom_resources.jsp" />
+<jsp:include page="dependencies/bottom_resources.jsp" />
 </body>
 
 </html>

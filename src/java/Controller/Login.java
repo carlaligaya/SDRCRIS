@@ -73,8 +73,12 @@ public class Login extends HttpServlet {
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/dashboard.jsp");
                     dispatcher.forward(request, response);
+                } else if (u.getUserType() == 0) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Please wait for account user type to be set by SDRC Administrator!');");
+                    out.println("location='index.jsp';");
+                    out.println("</script>");
                 }
-
             } else {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Account is no longer active!');");

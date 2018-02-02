@@ -74,8 +74,7 @@ public class RegisterProject extends BaseServlet {
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatcher;
+        PrintWriter out = response.getWriter();
 
         Project p = new Project();
 //        Funding f = new Funding();
@@ -90,9 +89,15 @@ public class RegisterProject extends BaseServlet {
         p.setEnddate(request.getParameter("pEnd"));
 
         if (pDAO.RegisterProject(p)) {
-            context = getServletContext();
-            dispatcher = context.getRequestDispatcher("/dashboard.jsp");
-            dispatcher.forward(request, response);
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Successfully Registered!');");
+            out.println("location='dashboard.jsp';");
+            out.println("</script>");
+        }else{
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Unsuccessfully Registered!');");
+            out.println("location='reg_new_project.jsp';");
+            out.println("</script>");
         }
     }
 

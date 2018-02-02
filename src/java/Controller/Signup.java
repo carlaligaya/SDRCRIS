@@ -59,9 +59,10 @@ public class Signup extends HttpServlet {
                 out.println("</script>");
             } else {
                 if (uDAO.RegisterUser(u)) {
-                    context = getServletContext();
-                    dispatcher = context.getRequestDispatcher("/index.jsp");
-                    dispatcher.forward(request, response);
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Account Successfully Registered. Please wait for account user type to be assigned!');");
+                    out.println("location='index.jsp';");
+                    out.println("</script>");
                 }
             }
         } else {

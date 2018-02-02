@@ -146,7 +146,7 @@
                                                                                 <tr>
                                                                                     <td><%= roles.get(i).getRole()%></td>
                                                                                     <td><%= roles.get(i).getDescription()%></td>
-                                                                                    <td>  <button type="submit" class="btn btn-warning" name="rID" value="<%= roles.get(i).getRoleID()%>">Delete</button></td>
+                                                                                    <td>  <button type="submit" class="btn btn-warning" name="rID" value="<%= roles.get(i).getRoleID()%>">Deactivate</button></td>
                                                                                 </tr>
                                                                                 <%}%>
                                                                             </tbody>
