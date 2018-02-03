@@ -290,7 +290,7 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return users;
     }
 
     public ArrayList<User> activeResearchMembers() {
@@ -326,7 +326,7 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return users;
     }
 
     public ArrayList<User> deactivatedUsers() {
@@ -362,7 +362,7 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return users;
     }
 
     public boolean UpdateUser(User u) {
@@ -536,7 +536,7 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return null;
+        return types;
     }
 
     public ArrayList<UserTypes> getActiveTypes() {
@@ -565,7 +565,7 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return types;
     }
     
 }

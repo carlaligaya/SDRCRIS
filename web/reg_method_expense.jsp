@@ -4,11 +4,8 @@
     Author     : RDE
 --%>
 
-<%@page import="DAO.UserDAO"%>
-<%@page import="Model.UserTypes"%>
-<%@page import="java.util.ArrayList"%>
-<%@include file="functions/security.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="functions/security.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
@@ -40,7 +37,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Register User Types</h1>
+                                        <h1>Register Expense Payment Method</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -57,11 +54,11 @@
                                     <!-- BEGIN PAGE BREADCRUMBS -->
                                     <ul class="page-breadcrumb breadcrumb">
                                         <li>
-                                            <span>Administrative</span>
+                                            <span>Budget Tracker</span>
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Register User Types</span>
+                                            <span>Register Expense Payment Method</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -79,25 +76,29 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER NEW USER TYPE</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER EXPENSE PAYMENT METHODS</span>
                                                             </div>
 
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10" action="RegisterUserType" method="post">
+                                                                <form class="col-md-10">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea  class="form-control" aria-describedby="emailHelp" placeholder="Description" name="description" required></textarea>
+                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
 
-                                                                    </div>		
+                                                                    </div>
+
+
+
+
                                                                     <div class="pull-left">
-                                                                        <input type="submit" class="btn btn-info" value="Register User Types">
+                                                                        <input type="submit" class="btn btn-info" value="Register Expense Method">
                                                                     </div>                                              
                                                                 </form>
 
@@ -116,47 +117,45 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED USER TYPES</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">PROJECT METHOD EXPENSES</span>
                                                             </div>
 
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <form method="post" action="DeactivateUserType">
-                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th width="20%">Name</th>
-                                                                                    <th width="65%">Description</th>
-                                                                                    <th width="15%"></th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tfoot>
-                                                                                <tr>
-                                                                                    <th>Name</th>
-                                                                                    <th>Description</th>
-                                                                                    <th></th>
-                                                                                </tr>
-                                                                            </tfoot>
-                                                                            <tbody>
-                                                                                <%
-                                                                                    UserDAO uDAO = new UserDAO();
-                                                                                    ArrayList<UserTypes> types = new ArrayList<UserTypes>();
-
-                                                                                    types = uDAO.getActiveTypes();
-
-                                                                                    for (int i = 0; i < types.size(); i++) {
-                                                                                %>
-                                                                                <tr>
-                                                                                    <td><%= types.get(i).getName()%></td>
-                                                                                    <td><%= types.get(i).getDescription()%></td>
-                                                                                    <td><button type="submit" class="btn btn-warning" value="<%= types.get(i).getUsertype()%>" name="utID">Deactivate</button></td>
-                                                                                </tr>
-                                                                                <%}%>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </form>
+                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="20%">Name</th>
+                                                                                <th width="10%">Amount</th>
+                                                                                <th width="30%">Remarks</th>
+                                                                                <th width="10%">Made On</th>
+                                                                                <th width="15%">Category</th>
+                                                                                <th width="15%">Disbursement Method</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <th width="20%">Name</th>
+                                                                                <th width="10%">Amount</th>
+                                                                                <th width="30%">Remarks</th>
+                                                                                <th width="10%">Made On</th>
+                                                                                <th width="15%">Category</th>
+                                                                                <th width="15%">Disbursement Method</th>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </div>
                                                             </div>
                                                         </div>

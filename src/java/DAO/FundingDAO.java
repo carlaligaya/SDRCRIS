@@ -48,6 +48,6 @@ public class FundingDAO {
         } catch (SQLException ex) {
             Logger.getLogger(FundingDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return types;
     }
 }

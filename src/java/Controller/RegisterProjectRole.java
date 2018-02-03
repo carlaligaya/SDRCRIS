@@ -75,8 +75,6 @@ public class RegisterProjectRole extends BaseServlet {
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatcher;
 
         RolesDAO rd = new RolesDAO();
         ProjectRole r = new ProjectRole();

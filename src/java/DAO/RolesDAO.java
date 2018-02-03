@@ -115,7 +115,7 @@ public class RolesDAO {
             Logger.getLogger(RolesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return null;
+        return roles;
     }
     
     public ArrayList<ProjectRole> getActiveRoles() {
@@ -146,6 +146,6 @@ public class RolesDAO {
             Logger.getLogger(RolesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return null;
+        return roles;
     }
 }

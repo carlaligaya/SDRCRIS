@@ -11,7 +11,6 @@ package Model;
  */
 public class Funding {
     private int fundingorganizationID;
-    private int funding_projectID;
     private String fundingorganization_name;
     private String description;
     private int fundingorganization_type;
@@ -23,14 +22,6 @@ public class Funding {
 
     public void setFundingorganizationID(int fundingorganizationID) {
         this.fundingorganizationID = fundingorganizationID;
-    }
-
-    public int getFunding_projectID() {
-        return funding_projectID;
-    }
-
-    public void setFunding_projectID(int funding_projectID) {
-        this.funding_projectID = funding_projectID;
     }
 
     public String getFundingorganization_name() {

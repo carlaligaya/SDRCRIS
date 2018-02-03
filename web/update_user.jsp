@@ -8,6 +8,7 @@
 <%@page import="Model.User"%>
 <%@page import="Model.UserTypes"%>
 <%@page import="java.util.ArrayList"%>
+<%@include file="functions/security.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

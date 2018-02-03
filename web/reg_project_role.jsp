@@ -7,6 +7,7 @@
 <%@page import="Model.ProjectRole"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.RolesDAO"%>
+<%@include file="functions/security.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
