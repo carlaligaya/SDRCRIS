@@ -25,12 +25,12 @@
         <servlet-class>Controller.UpdateUser</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddProjectRole</servlet-name>
-        <servlet-class>Controller.AddProjectRole</servlet-class>
+        <servlet-name>RegisterProjectRole</servlet-name>
+        <servlet-class>Controller.RegisterProjectRole</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddUserType</servlet-name>
-        <servlet-class>Controller.AddUserType</servlet-class>
+        <servlet-name>RegisterUserType</servlet-name>
+        <servlet-class>Controller.RegisterUserType</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeactivateProjectRole</servlet-name>
@@ -69,11 +69,11 @@
         <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddProjectRole</servlet-name>
+        <servlet-name>RegisterProjectRole</servlet-name>
         <url-pattern>/AddProjectRole</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddUserType</servlet-name>
+        <servlet-name>RegisterUserType</servlet-name>
         <url-pattern>/AddUserType</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

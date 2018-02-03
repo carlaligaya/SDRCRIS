@@ -37,14 +37,13 @@ public abstract class BaseServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.setContentType("text/html;charset=UTF-8");
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession();
             String login = (String) session.getAttribute("successful");
-            if (login.equalsIgnoreCase("successful")) {
+            if (login != null && login.equals("success")) {
                 servletAction(request, response, session);
-            } else if (login.equalsIgnoreCase(null) || !session.isNew()) {
+            } else {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/login.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);
             }
         }

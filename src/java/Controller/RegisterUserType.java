@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.RolesDAO;
-import Model.ProjectRole;
+import DAO.UserDAO;
+import Model.UserTypes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author carl_
  */
-public class AddProjectRole extends BaseServlet {
+public class RegisterUserType extends BaseServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,24 +75,22 @@ public class AddProjectRole extends BaseServlet {
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatcher;
 
-        RolesDAO rd = new RolesDAO();
-        ProjectRole r = new ProjectRole();
+        UserDAO u = new UserDAO();
+        UserTypes ut = new UserTypes();
 
-        r.setRole(request.getParameter("role"));
-        r.setDescription(request.getParameter("description"));
+        ut.setName(request.getParameter("name"));
+        ut.setDescription(request.getParameter("description"));
 
-        if (rd.addRole(r)) {
+        if (u.addType(ut)) {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Project Role Successfully Added!');");
-            out.println("location='reg_project_role.jsp';");
+            out.println("alert('User Type Successfully Added!');");
+            out.println("location='reg_user_types.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Project Role Unsuccessfully Added!');");
-            out.println("location='reg_project_role.jsp';");
+            out.println("alert('User Type Unsuccessfully Added!');");
+            out.println("location='reg_user_types.jsp';");
             out.println("</script>");
         }
     }
