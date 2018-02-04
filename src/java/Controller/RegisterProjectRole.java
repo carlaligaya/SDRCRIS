@@ -85,12 +85,12 @@ public class RegisterProjectRole extends BaseServlet {
         if (rd.addRole(r)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Role Successfully Added!');");
-            out.println("location='reg_project_role.jsp';");
+            out.println("location='/SDRCRIS/reg_project_role.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Role Unsuccessfully Added!');");
-            out.println("location='reg_project_role.jsp';");
+            out.println("location='/SDRCRIS/reg_project_role.jsp';");
             out.println("</script>");
         }
     }

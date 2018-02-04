@@ -84,12 +84,12 @@ public class UpdateExpenseCategory extends BaseServlet {
         if (eDAO.updateExpenseCategory(ec)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Category Successfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_category_expense.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Category Unsuccessfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_category_expense.jsp';");
             out.println("</script>");
         }
     }

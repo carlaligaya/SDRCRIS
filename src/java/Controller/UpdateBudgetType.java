@@ -84,12 +84,12 @@ public class UpdateBudgetType extends BaseServlet {
         if (bDAO.updateBudgetType(bt)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Budget Registration Type Successfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_budget_type.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Budget Registration Type Unsuccessfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_budget_type.jsp';");
+            out.println("location='.jsp';");
             out.println("</script>");
         }
     }

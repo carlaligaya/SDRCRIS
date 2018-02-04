@@ -91,12 +91,12 @@ public class RegisterProject extends BaseServlet {
         if (pDAO.RegisterProject(p)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Successfully Registered!');");
-            out.println("location='dashboard.jsp';");
+            out.println("location='/SDRCRIS/dashboard.jsp';");
             out.println("</script>");
         }else{
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Unsuccessfully Registered!');");
-            out.println("location='reg_new_project.jsp';");
+            out.println("location='/SDRCRIS/reg_new_project.jsp';");
             out.println("</script>");
         }
     }

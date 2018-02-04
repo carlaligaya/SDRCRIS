@@ -4,6 +4,9 @@
     Author     : RDE
 --%>
 
+<%@page import="Model.ExpenseCategory"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.ExpenseDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="functions/security.jsp" %>
 <!DOCTYPE html>
@@ -83,14 +86,14 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10">
+                                                                <form class="col-md-10" action="RegisterExpenseCategory" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="ECname" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="ECdescription" required></textarea>
 
                                                                     </div>
 
@@ -129,18 +132,31 @@
                                                                             <tr>
                                                                                 <th width="40%">Name</th>
                                                                                 <th width="60%">Description</th>
+                                                                                <th></th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
                                                                             <tr>
                                                                                 <th width="40%">Name</th>
                                                                                 <th width="60%">Description</th>
-                                                                            </tr>                                    </tfoot>
+                                                                                <th></th>
+                                                                            </tr>                                    
+                                                                        </tfoot>
                                                                         <tbody>
+                                                                            <%
+                                                                                ExpenseDAO eDAO = new ExpenseDAO();
+                                                                                ArrayList<ExpenseCategory> categories = new ArrayList<ExpenseCategory>();
+                                                                                
+                                                                                categories = eDAO.getActiveCategories();
+                                                                                
+                                                                                for(int i = 0; i < categories.size(); i++){
+                                                                            %>
                                                                             <tr>
-                                                                                <td></td>
-                                                                                <td></td>
+                                                                                <td><%= categories.get(i).getName()%></td>
+                                                                                <td><%= categories.get(i).getDescription()%></td>
+                                                                                <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" >Update</button></td>               
                                                                             </tr>
+                                                                            <%}%>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -184,7 +200,6 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    </div>
     <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
 <script src="assets/global/plugins/excanvas.min.js"></script> 

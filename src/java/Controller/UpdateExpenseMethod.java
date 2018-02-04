@@ -84,12 +84,12 @@ public class UpdateExpenseMethod extends BaseServlet {
         if (eDAO.updateExpenseMethod(me)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Method Successfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_expense.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Method Successfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_expense.jsp';");
             out.println("</script>");
         }
     }

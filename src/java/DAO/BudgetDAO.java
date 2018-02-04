@@ -148,6 +148,36 @@ public class BudgetDAO {
         }
         return types;
     }
+    
+        public ArrayList<BudgetRegistrationType> getActiveBudgetTypes() {
+        ArrayList<BudgetRegistrationType> types = new ArrayList<BudgetRegistrationType>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "SELECT * FROM `sdrcris`.`budget_registration_type` WHERE `active` = 1 ORDER BY `budgetregistration_typeID`;";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                BudgetRegistrationType t = new BudgetRegistrationType();
+
+                t.setBudgetregistration_typeID(rs.getInt("budgetregistration_typeID"));
+                t.setName(rs.getString("name"));
+                t.setDescription(rs.getString("description"));
+                t.setActive(rs.getInt("active"));
+
+                types.add(t);
+            }
+            ps.close();
+            con.close();
+            return types;
+        } catch (SQLException ex) {
+            Logger.getLogger(BudgetDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return types;
+    }
 
     public boolean addBudgetMethod(MethodOfBudgetRegistration bm) {
         try {
@@ -254,6 +284,36 @@ public class BudgetDAO {
             Connection con = myFactory.getConnection();
 
             String query = "SELECT * FROM `sdrcris`.`method_of_budget_registration` ORDER BY `registration_methodID`;";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                MethodOfBudgetRegistration m = new MethodOfBudgetRegistration();
+
+                m.setRegistration_methodID(rs.getInt("registration_methodID"));
+                m.setName(rs.getString("name"));
+                m.setDescription(rs.getString("description"));
+                m.setActive(rs.getInt("active"));
+
+                methods.add(m);
+            }
+            ps.close();
+            con.close();
+            return methods;
+        } catch (SQLException ex) {
+            Logger.getLogger(BudgetDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return methods;
+    }
+    
+    public ArrayList<MethodOfBudgetRegistration> getActiveBudgetMethods() {
+        ArrayList<MethodOfBudgetRegistration> methods = new ArrayList<MethodOfBudgetRegistration>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "SELECT * FROM `sdrcris`.`method_of_budget_registration` WHERE `active` = 1 ORDER BY `registration_methodID`;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();

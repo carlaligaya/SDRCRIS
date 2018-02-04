@@ -87,12 +87,12 @@ public class RegisterProjectBudget extends BaseServlet {
         if (pDAO.addProjectBudget(pb)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Budget Successfully Registered!');");
-            out.println("location='reg_budget.jsp';")
+            out.println("location='reg_budget.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Budget Unsuccessfully Registered!');");
-            out.println("location='reg_budget.jsp';")
+            out.println("location='reg_budget.jsp';");
             out.println("</script>");
         }
     }

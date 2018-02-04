@@ -78,12 +78,12 @@ public class DeactivateUserType extends BaseServlet {
         if (uDAO.deactivateType(Integer.parseInt(request.getParameter("utID")))) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('User Type Successfully Deactivated!');");
-            out.println("location='reg_user_types.jsp';");
+            out.println("location='/SDRCRIS/reg_user_types.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('User Type Deactivation Unseccessful!');");
-            out.println("location='reg_user_types.jsp';");
+            out.println("location='/SDRCRIS/reg_user_types.jsp';");
             out.println("</script>");
         }
     }

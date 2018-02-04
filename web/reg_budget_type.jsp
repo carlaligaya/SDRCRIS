@@ -4,8 +4,11 @@
     Author     : RDE
 --%>
 
+<%@page import="Model.BudgetRegistrationType"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.BudgetDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="functions/security.jsp" %>
+<%--<%@include file="functions/security.jsp" %>--%>
 <!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
@@ -37,7 +40,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Register Budget Category</h1>
+                                        <h1>Register Budget Type</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -58,7 +61,7 @@
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Register Budget Category</span>
+                                            <span>Register Budget Type</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -76,21 +79,21 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER BUDGET CATEGORY</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER BUDGET TYPE</span>
                                                             </div>
 
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10">
+                                                                <form class="col-md-10" action="RegisterBudgetType" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="BTname" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="BTdescription" required></textarea>
 
                                                                     </div>
 
@@ -117,7 +120,7 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED BUDGET CATEGORIES</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED BUDGET TYPES</span>
                                                             </div>
 
                                                         </div>
@@ -129,18 +132,31 @@
                                                                             <tr>
                                                                                 <th width="40%">Name</th>
                                                                                 <th width="60%">Description</th>
+                                                                                <th></th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
                                                                             <tr>
                                                                                 <th width="40%">Name</th>
                                                                                 <th width="60%">Description</th>
-                                                                            </tr>                                    </tfoot>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td></td>
-                                                                                <td></td>
+                                                                                <th></th>
                                                                             </tr>
+                                                                        </tfoot>
+                                                                        <tbody>
+                                                                            <%
+                                                                                BudgetDAO bDAO = new BudgetDAO();
+                                                                                ArrayList<BudgetRegistrationType> types = new ArrayList<BudgetRegistrationType>();
+
+                                                                                types = bDAO.getActiveBudgetTypes();
+
+                                                                                for (int i = 0; i < types.size(); i++) {
+                                                                            %>
+                                                                            <tr>
+                                                                                <td><%= types.get(i).getName()%></td>
+                                                                                <td><%= types.get(i).getDescription()%></td>
+                                                                                <td><button name="BTID" value="<%= types.get(i).getBudgetregistration_typeID()%>" class="btn btn-info pull-right" >Update</button></td>
+                                                                            </tr>
+                                                                            <%}%>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -184,13 +200,12 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    </div>
-    <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
-    <jsp:include page="dependencies/bottom_resources.jsp" />
-</body>
+        <!--[if lt IE 9]>
+    <script src="assets/global/plugins/respond.min.js"></script>
+    <script src="assets/global/plugins/excanvas.min.js"></script> 
+    <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+    <![endif]-->
+        <jsp:include page="dependencies/bottom_resources.jsp" />
+    </body>
 
 </html>

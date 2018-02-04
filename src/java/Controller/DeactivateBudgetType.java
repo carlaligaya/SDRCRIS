@@ -78,12 +78,12 @@ public class DeactivateBudgetType extends BaseServlet {
         if (bDAO.DeactivateBudgetType(Integer.parseInt(request.getParameter("BTID")))) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Budget Registration Type Successfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_budget_type.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Budget Registration Type Unsuccessfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_budget_type.jsp';");
             out.println("</script>");
         }
     }

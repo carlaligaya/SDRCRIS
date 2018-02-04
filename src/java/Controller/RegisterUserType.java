@@ -85,12 +85,12 @@ public class RegisterUserType extends BaseServlet {
         if (u.addType(ut)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('User Type Successfully Added!');");
-            out.println("location='reg_user_types.jsp';");
+            out.println("location='/SDRCRIS/reg_user_types.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('User Type Unsuccessfully Added!');");
-            out.println("location='reg_user_types.jsp';");
+            out.println("location='/SDRCRIS/reg_user_types.jsp';");
             out.println("</script>");
         }
     }

@@ -103,19 +103,19 @@ public class UpdateUser extends BaseServlet {
                 if (session.getAttribute("IDuser") != null) {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('User Details Successfully Updated!');");
-                    out.println("location='manage_user.jsp';");
+                    out.println("location='/SDRCRIS/manage_user.jsp';");
                     out.println("</script>");
                 } else {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('User Details Successfully Updated!');");
-                    out.println("location='update_user.jsp';");
+                    out.println("location='/SDRCRIS/update_user.jsp';");
                     out.println("</script>");
                 }
             }
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Passwords did not match!');");
-            out.println("location='update_user.jsp';");
+            out.println("location='/SDRCRIS/update_user.jsp';");
             out.println("</script>");
         }
     }

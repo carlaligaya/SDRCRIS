@@ -4,6 +4,9 @@
     Author     : RDE
 --%>
 
+<%@page import="Model.MethodOfExpense"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.ExpenseDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="functions/security.jsp" %>
 <!DOCTYPE html>
@@ -83,14 +86,14 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10">
+                                                                <form class="col-md-10" action="RegisterExpenseMethod">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
 
                                                                     </div>
 
@@ -117,7 +120,7 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">PROJECT METHOD EXPENSES</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED EXPENSE PAYMENT METHODS</span>
                                                             </div>
 
                                                         </div>
@@ -127,42 +130,40 @@
                                                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th width="20%">Name</th>
-                                                                                <th width="10%">Amount</th>
-                                                                                <th width="30%">Remarks</th>
-                                                                                <th width="10%">Made On</th>
-                                                                                <th width="15%">Category</th>
-                                                                                <th width="15%">Disbursement Method</th>
+                                                                                <th width="40%">Name</th>
+                                                                                <th width="60%">Description</th>
+                                                                                <th></th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
                                                                             <tr>
-                                                                                <th width="20%">Name</th>
-                                                                                <th width="10%">Amount</th>
-                                                                                <th width="30%">Remarks</th>
-                                                                                <th width="10%">Made On</th>
-                                                                                <th width="15%">Category</th>
-                                                                                <th width="15%">Disbursement Method</th>
+                                                                                <th width="40%">Name</th>
+                                                                                <th width="60%">Description</th>
+                                                                                <th></th>
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
+                                                                            <%
+                                                                                ExpenseDAO eDAO = new ExpenseDAO();
+                                                                                ArrayList<MethodOfExpense> methods = new ArrayList<MethodOfExpense>();
+
+                                                                                methods = eDAO.getActiveMethods();
+
+                                                                                for (int i = 0; i < methods.size(); i++) {
+                                                                            %>
                                                                             <tr>
-                                                                                <td></td>
-                                                                                <td></td>
-                                                                                <td></td>
-                                                                                <td></td>
-                                                                                <td></td>
-                                                                                <td></td>
+                                                                                <td><%= methods.get(i).getName()%></td>
+                                                                                <td><%= methods.get(i).getDescription()%></td>
+                                                                                <td><button name="MEID" value="<%= methods.get(i).getExpensemethodID()%>" class="btn btn-info pull-right" >Update</button></td>
                                                                             </tr>
+                                                                            <%}%>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <ul class="list-separated list-inline-xs hide">
-
                                                         </ul>
-
                                                     </div>
                                                 </div>
                                             </div>

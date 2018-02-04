@@ -78,12 +78,12 @@ public class DeactivateBudgetMethod extends BaseServlet {
         if (bDAO.DeactivateBudgetMethod(Integer.parseInt(request.getParameter("BMID")))) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Method of Budget Registration Successfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_budget.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Method of Budget Registration Unsuccessfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_budget.jsp';");
             out.println("</script>");
         }
     }

@@ -78,12 +78,12 @@ public class DeactivateUser extends BaseServlet {
         if (uDAO.DeactivateUser(Integer.parseInt(request.getParameter("UID")))) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('User Successfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRC/manage_user.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('User Unsuccessfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRC/manage_user.jsp';");
             out.println("</script>");
         }
     }

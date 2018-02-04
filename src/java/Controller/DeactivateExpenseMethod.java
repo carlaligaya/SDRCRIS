@@ -78,12 +78,12 @@ public class DeactivateExpenseMethod extends BaseServlet {
         if(eDAO.DeactivateExpenseMethod(Integer.parseInt(request.getParameter("expenseMID")))){
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Method Successfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRC/reg_method_expnese.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Method Unsuccessfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRC/reg_method_expnese.jsp';");
             out.println("</script>");
         }
     }

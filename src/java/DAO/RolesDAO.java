@@ -45,14 +45,38 @@ public class RolesDAO {
         return false;
     }
 
-     public boolean ActivateRole(int rID){
+    public boolean updateRole(ProjectRole r) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "UPDATE `sdrcris`.`projectrole` SET `role` =? , `description` = ? WHERE `roleID` = ?;";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, r.getRole());
+            ps.setString(2, r.getDescription());
+            ps.setInt(3, r.getRoleID());
+
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(RolesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public boolean ActivateRole(int rID) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
             String query = "UPDATE `sdrcris`.`projectrole` SET `active` = 1 WHERE `roleID` = ?;";
             PreparedStatement ps = con.prepareStatement(query);
-            
+
             ps.setInt(1, rID);
 
             ps.executeUpdate();
@@ -65,7 +89,7 @@ public class RolesDAO {
         }
         return false;
     }
-    
+
     public boolean DeactivateRole(int rID) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -117,7 +141,7 @@ public class RolesDAO {
 
         return roles;
     }
-    
+
     public ArrayList<ProjectRole> getActiveRoles() {
         ArrayList<ProjectRole> roles = new ArrayList<ProjectRole>();
 

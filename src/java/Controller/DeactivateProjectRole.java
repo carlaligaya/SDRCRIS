@@ -78,12 +78,12 @@ public class DeactivateProjectRole extends BaseServlet {
         if (rDAO.DeactivateRole(Integer.parseInt(request.getParameter("rID")))) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Role Successfully Deactivated!');");
-            out.println("location='reg_project_role.jsp';");
+            out.println("location='/SDRCRIS/reg_project_role.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Role Deactivation Unseccessful!');");
-            out.println("location='reg_project_role.jsp';");
+            out.println("location='/SDRCRIS/reg_project_role.jsp';");
             out.println("</script>");
         }
     }

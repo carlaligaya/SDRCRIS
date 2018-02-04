@@ -78,12 +78,12 @@ public class DeactivateExpenseCategory extends BaseServlet {
         if (eDAO.DeactivateExpenseCategory(Integer.parseInt(request.getParameter("expenseCID")))) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Category Successfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_category_expense.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Category Unsuccessfully Deactivated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_category_expense.jsp';");
             out.println("</script>");
         }
     }

@@ -84,12 +84,12 @@ public class UpdateBudgetMethod extends BaseServlet {
         if (bDAO.updateBudgetMethod(bm)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Method of Budget Registration Successfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_budget.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Method of Budget Registration Unsuccessfully Updated!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_budget.jsp';");
             out.println("</script>");
         }
     }

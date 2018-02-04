@@ -83,12 +83,12 @@ public class RegisterBudgetMethod extends BaseServlet {
         if (bDAO.addBudgetMethod(bm)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Method of Budget Registration Successfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_budget.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Method of Budget Registration Unsuccessfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_budget.jsp';");
             out.println("</script>");
         }
     }

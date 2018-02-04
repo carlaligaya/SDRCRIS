@@ -89,7 +89,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Remarks</label>
-                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
 
                                                                     </div>
 
@@ -185,7 +185,7 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    </div>
+
     <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
 <script src="assets/global/plugins/excanvas.min.js"></script> 

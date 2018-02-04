@@ -83,12 +83,12 @@ public class RegisterBudgetType extends BaseServlet {
         if (bDAO.addBudgetType(bt)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Budget Registration Type Successfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_budget_type.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Budget Registration Type Unsuccessfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_budget_type.jsp';");
             out.println("</script>");
         }
     }

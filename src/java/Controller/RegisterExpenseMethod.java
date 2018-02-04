@@ -83,12 +83,12 @@ public class RegisterExpenseMethod extends BaseServlet {
         if (eDAO.addExpenseMethod(me)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Method Successfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_expense.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Method Unsuccessfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_method_expense.jsp';");
             out.println("</script>");
         }
     }

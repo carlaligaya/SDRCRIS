@@ -88,12 +88,12 @@ public class UpdateProjectExpense extends BaseServlet {
         if (pDAO.updateProjectExpense(pe)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Expense Successfully Updated!');");
-            out.println("location='reg_expenses.jsp';")
+            out.println("location='/SDRCRIS/reg_expenses.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Expense Successfully Updated!');");
-            out.println("location='reg_expenses.jsp';")
+            out.println("location='/SDRCRIS/reg_expenses.jsp';");
             out.println("</script>");
         }
     }

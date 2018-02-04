@@ -149,6 +149,36 @@ public class ExpenseDAO {
         }
         return cat;
     }
+    
+    public ArrayList<ExpenseCategory> getActiveCategories() {
+        ArrayList<ExpenseCategory> cat = new ArrayList<ExpenseCategory>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "SELECT * FROM `sdrcris`.`expense_category` WHERE `active` = 1 ORDER BY `expensecategoryID`;";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ExpenseCategory c = new ExpenseCategory();
+
+                c.setExpensecategoryID(rs.getInt("expensecategoryID"));
+                c.setName(rs.getString("name"));
+                c.setDescription(rs.getString("description"));
+                c.setActive(rs.getInt("active"));
+
+                cat.add(c);
+            }
+            ps.close();
+            con.close();
+            return cat;
+        } catch (SQLException ex) {
+            Logger.getLogger(ExpenseDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cat;
+    }
 
     public boolean addExpenseMethod(MethodOfExpense me) {
         try {
@@ -254,6 +284,36 @@ public class ExpenseDAO {
             Connection con = myFactory.getConnection();
 
             String query = "SELECT * FROM `sdrcris`.`method_of_expense` ORDER BY `expensemethodID`;";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                MethodOfExpense m = new MethodOfExpense();
+
+                m.setExpensemethodID(rs.getInt("expensemethodID"));
+                m.setName(rs.getString("name"));
+                m.setDescription(rs.getString("description"));
+                m.setActive(rs.getInt("active"));
+
+                met.add(m);
+            }
+            ps.close();
+            con.close();
+            return met;
+        } catch (SQLException ex) {
+            Logger.getLogger(ExpenseDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return met;
+    }
+    
+    public ArrayList<MethodOfExpense> getActiveMethods() {
+        ArrayList<MethodOfExpense> met = new ArrayList<MethodOfExpense>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "SELECT * FROM `sdrcris`.`method_of_expense` WHERE `active` = 1 ORDER BY `expensemethodID`;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();

@@ -83,12 +83,12 @@ public class RegisterExpenseCategory extends BaseServlet {
         if (eDAO.addExpenseCategory(ec)) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Category Successfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_category_expense.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Category Unuccessfully Registered!');");
-            out.println("location='.jsp';")
+            out.println("location='/SDRCRIS/reg_category_expense.jsp';");
             out.println("</script>");
         }
 
