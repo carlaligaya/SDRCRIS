@@ -5,10 +5,9 @@
  */
 package Controller;
 
+import DAO.ProjectDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +16,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author carl_
+ * @author Carl
  */
-public class ViewUser extends BaseServlet {
+public class DeactivateProject extends BaseServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,7 +29,6 @@ public class ViewUser extends BaseServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -72,11 +70,22 @@ public class ViewUser extends BaseServlet {
 
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
-        session.setAttribute("IDuser", request.getParameter("UID"));
-        
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatcher = context.getRequestDispatcher("/update_user.jsp");
-        dispatcher.forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        ProjectDAO pDAO = new ProjectDAO();
+
+        if (pDAO.DeactivateProject(Integer.parseInt(request.getParameter("pID")))) {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Successfully Deactivated!');");
+            out.println("location='/SDRC/manage_project.jsp';");
+            out.println("</script>");
+        } else {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Project Unsuccessfully Deactivated!');");
+            out.println("location='/SDRC/manage_project.jsp';");
+            out.println("</script>");
+        }
     }
 
 }

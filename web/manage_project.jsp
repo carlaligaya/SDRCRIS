@@ -8,7 +8,7 @@
 <%@page import="Model.Project"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="functions/security.jsp" %>
+<%--<%@include file="functions/security.jsp" %>--%>
 <!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
@@ -91,7 +91,8 @@
                                                                                 <th width="50%">Description</th>
                                                                                 <th width="10%">Start Date</th>
                                                                                 <th width="10%">End Date</th>
-                                                                                <th width="10%"></th>    
+                                                                                <th width="5%">Deactivate</th>    
+                                                                                <th width="5%">Update</th> 
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
@@ -100,15 +101,16 @@
                                                                                 <th width="40%">Description</th>
                                                                                 <th width="10%">Start Date</th>
                                                                                 <th width="10%">End Date</th>
-                                                                                <th width="10%"></th>    
+                                                                                <th width="5%">Deactivate</th>    
+                                                                                <th width="5%">Update</th> 
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-                                                                            <%
+                                                                            <%                                                                                
                                                                                 ProjectDAO pd = new ProjectDAO();
                                                                                 ArrayList<Project> projects = new ArrayList<Project>();
 
-                                                                                projects = pd.getProjects();
+                                                                                projects = pd.getActiveProjects();
 
                                                                                 for (int i = 0; i < projects.size(); i++) {
                                                                             %>
@@ -117,7 +119,14 @@
                                                                                 <td><%= projects.get(i).getDescription()%></td>
                                                                                 <td><%= projects.get(i).getStartdate()%></td>
                                                                                 <td><%= projects.get(i).getEnddate()%></td>
-                                                                                <td><button class="btn btn-info pull-right" type="submit" name="pID" value="<%= projects.get(i).getProjectID()%>">UPDATE</button></td>
+                                                                                <td>  
+                                                                                    <button name="pID" type="submit" class="btn btn-info btn-lg" value="<%= projects.get(i).getProjectID()%>" onclick="form.action = 'DeactivateProject';" />
+                                                                                    <span class="glyphicon glyphicon-scissors"></span>
+                                                                                </td>  
+                                                                                <td>  
+                                                                                    <button name="pID" type="submit" class="btn btn-info btn-lg" value="<%= projects.get(i).getProjectID()%>" />
+                                                                                    <span class="glyphicon glyphicon-wrench"></span>
+                                                                                </td>
                                                                             </tr>
                                                                             <%}%>
                                                                         </tbody>

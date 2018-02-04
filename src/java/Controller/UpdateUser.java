@@ -96,10 +96,6 @@ public class UpdateUser extends BaseServlet {
 
         if (request.getParameter("p1").equals(request.getParameter("p2"))) {
             if (uDAO.UpdateUser(u)) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/manage_user.jsp");
-                dispatcher.forward(request, response);
-
                 if (session.getAttribute("IDuser") != null) {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('User Details Successfully Updated!');");

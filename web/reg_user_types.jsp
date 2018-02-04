@@ -198,7 +198,6 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    </div>
     <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
 <script src="assets/global/plugins/excanvas.min.js"></script> 

@@ -555,6 +555,7 @@ public class UserDAO {
 
                 t.setUsertype(rs.getInt("usertypeID"));
                 t.setName(rs.getString("name"));
+                t.setDescription(rs.getString("description"));
                 t.setActive(rs.getInt("active"));
 
                 types.add(t);

@@ -112,6 +112,10 @@
         <servlet-name>UpdateProjectExpense</servlet-name>
         <servlet-class>Controller.UpdateProjectExpense</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeactivateProject</servlet-name>
+        <servlet-class>Controller.DeactivateProject</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -138,11 +142,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterProjectRole</servlet-name>
-        <url-pattern>/AddProjectRole</url-pattern>
+        <url-pattern>/RegisterProjectRole</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterUserType</servlet-name>
-        <url-pattern>/AddUserType</url-pattern>
+        <url-pattern>/RegisterUserType</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeactivateProjectRole</servlet-name>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProjectExpense</servlet-name>
         <url-pattern>/UpdateProjectExpense</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeactivateProject</servlet-name>
+        <url-pattern>/DeactivateProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

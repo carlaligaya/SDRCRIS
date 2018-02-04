@@ -396,23 +396,23 @@
                             </li>
 
                             <li aria-haspopup="true" class="">
-                                <a href="manage_user.jsp" class="nav-link">
+                                <a href="reg_method_expense.jsp" class="nav-link">
                                     <i class="glyphicon glyphicon-user"></i>Expense Method</a>
                             </li>
 
                             <li aria-haspopup="true" class="">
-                                <a href="manage_user.jsp" class="nav-link">
+                                <a href="reg_category_expense.jsp" class="nav-link">
                                     <i class="glyphicon glyphicon-th-list"></i> Expense Category</a>
                             </li>
 
 
                             <li aria-haspopup="true" class="">
-                                <a href="manage_user.jsp" class="nav-link">
+                                <a href="reg_method_budget.jsp" class="nav-link">
                                     <i class="glyphicon glyphicon-user"></i> Budget Method</a>
                             </li>
 
                             <li aria-haspopup="true" class="">
-                                <a href="manage_user.jsp" class="nav-link">
+                                <a href="reg_budget_type.jsp" class="nav-link">
                                     <i class="glyphicon glyphicon-th-list"></i> Budget Category</a>
                             </li>
 

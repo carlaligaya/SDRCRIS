@@ -95,7 +95,8 @@
                                                                                 <th width="10%">Masters</th>
                                                                                 <th width="10%">Doctorate</th>
                                                                                 <th width="10%">Registration Date</th>
-                                                                                <th width="10%"></th>    
+                                                                                <th width="5%">Deactivate</th>    
+                                                                                <th width="5%">Update</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
@@ -108,12 +109,13 @@
                                                                                 <th width="10%">Masters</th>
                                                                                 <th width="10%">Doctorate</th>
                                                                                 <th width="10%">Registration Date</th>
-                                                                                <th width="10%"></th>    
+                                                                                <th width="5%">Deactivate</th>    
+                                                                                <th width="5%">Update</th>
 
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-                                                                            <%
+                                                                            <%                                                                                
                                                                                 UserDAO ud = new UserDAO();
                                                                                 ArrayList<User> user = new ArrayList<User>();
 
@@ -129,7 +131,14 @@
                                                                                 <td><% if (user.get(i).getMasteral() == null) {%> <%} else {%> <%= user.get(i).getMasteral()%> <%}%></td>
                                                                                 <td><% if (user.get(i).getDoctorate() == null) { %> <%} else {%> <%= user.get(i).getDoctorate()%> <%}%></td>
                                                                                 <td><%= user.get(i).getRegistrationDate()%></td>
-                                                                                <td><button name="user" value="<%= user.get(i).getUserID()%>" class="btn btn-info pull-right">UPDATE</button></td>
+                                                                                <td>
+                                                                                    <button name="UID" class="btn btn-info btn-lg" value="<%= user.get(i).getUserID()%>" onclick="form.action = 'DeactivateUser';" />
+                                                                                    <span class="glyphicon glyphicon-scissors"></span>
+                                                                                </td>  
+                                                                                    <td>  
+                                                                                        <button name="UID" class="btn btn-info btn-lg" value="<%= user.get(i).getUserID()%>" />
+                                                                                        <span class="glyphicon glyphicon-wrench"></span>
+                                                                                    </td>
                                                                             </tr>
                                                                             <%}%>
                                                                         </tbody>

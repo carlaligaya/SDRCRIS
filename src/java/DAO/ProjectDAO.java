@@ -217,7 +217,41 @@ public class ProjectDAO {
 
                 p.setProjectID(rs.getInt("projectID"));
                 p.setName(rs.getString("name"));
-                p.setDescription("description");
+                p.setDescription(rs.getString("description"));
+                p.setStartdate(df.format(rs.getDate("startdate")));
+                p.setEnddate(df.format(rs.getDate("enddate")));
+                p.setActive(rs.getInt("active"));
+
+                projects.add(p);
+            }
+            ps.close();
+            con.close();
+            return projects;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return projects;
+    }
+    
+    public ArrayList<Project> getActiveProjects() {
+        ArrayList<Project> projects = new ArrayList<Project>();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "SELECT * FROM `sdrcris`.project WHERE `active` = 1 ORDER BY projectID;";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Project p = new Project();
+
+                p.setProjectID(rs.getInt("projectID"));
+                p.setName(rs.getString("name"));
+                p.setDescription(rs.getString("description"));
                 p.setStartdate(df.format(rs.getDate("startdate")));
                 p.setEnddate(df.format(rs.getDate("enddate")));
                 p.setActive(rs.getInt("active"));

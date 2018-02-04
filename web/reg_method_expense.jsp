@@ -86,14 +86,14 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10" action="RegisterExpenseMethod">
+                                                                <form class="col-md-10" action="RegisterExpenseMethod" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="MEname" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="MEdescription" required></textarea>
 
                                                                     </div>
 
@@ -198,7 +198,6 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    </div>
     <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
 <script src="assets/global/plugins/excanvas.min.js"></script> 
