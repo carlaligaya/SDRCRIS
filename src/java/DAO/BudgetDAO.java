@@ -53,7 +53,7 @@ public class BudgetDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT `name` FROM `sdrcris`.`budget_registration_type` WHERE `budgetregistration_typeID` = ?;";
+            String query = "SELECT * FROM `sdrcris`.`budget_registration_type` WHERE `budgetregistration_typeID` = ?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, btID);
@@ -210,7 +210,7 @@ public class BudgetDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT `name` FROM `sdrcris`.`method_of_budget_registration` WHERE `registration_methodID` = ?;";
+            String query = "SELECT * FROM `sdrcris`.`method_of_budget_registration` WHERE `registration_methodID` = ?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, bmID);

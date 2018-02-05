@@ -236,7 +236,7 @@
                                         <li class="dropdown dropdown-user dropdown-dark">
                                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                                 <img alt="" class="img-circle" src="">
-                                                <span class="username username-hide-mobile">Nick</span>
+                                                <span class="username username-hide-mobile"><%= session.getAttribute("firstName") %></span>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-default">
                                                 <li>
@@ -265,7 +265,7 @@
                                                         <i class="icon-lock"></i> Lock Screen </a>
                                                 </li>
                                                 <li>
-                                                    <a href="page_user_login_1.html">
+                                                    <a href="index.jsp">
                                                         <i class="icon-key"></i> Log Out </a>
                                                 </li>
                                             </ul>

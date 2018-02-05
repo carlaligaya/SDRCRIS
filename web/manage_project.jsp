@@ -106,8 +106,7 @@
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-                                                                            <%                                                                                
-                                                                                ProjectDAO pd = new ProjectDAO();
+                                                                            <%                                                                                ProjectDAO pd = new ProjectDAO();
                                                                                 ArrayList<Project> projects = new ArrayList<Project>();
 
                                                                                 projects = pd.getActiveProjects();
@@ -139,7 +138,7 @@
                                                             <br>
 
                                                         </div>
-
+                                                        <a href="reg_new_project.jsp" class="btn btn-danger" role="button">REGISTER NEW PROJECT</a>
                                                     </div>
                                                     <ul class="list-separated list-inline-xs hide">
 

@@ -77,12 +77,12 @@ public class UpdateBudgetType extends BaseServlet {
         BudgetDAO bDAO = new BudgetDAO();
         BudgetRegistrationType bt = new BudgetRegistrationType();
 
-        bt.setBudgetregistration_typeID(Integer.parseInt(request.getParameter("BTID")));
+        bt.setBudgetregistration_typeID(Integer.parseInt(session.getAttribute("Btype").toString()));
         bt.setName(request.getParameter("BTname"));
         bt.setDescription(request.getParameter("BTdescription"));
 
         if (bDAO.updateBudgetType(bt)) {
-            session.setAttribute("type", null);
+            session.setAttribute("Btype", null);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Budget Registration Type Successfully Updated!');");
             out.println("location='/SDRCRIS/reg_budget_type.jsp';");

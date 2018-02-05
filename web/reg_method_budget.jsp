@@ -40,7 +40,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Register Expense Payment Method</h1>
+                                        <h1>Register Budget Registration Method</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -61,7 +61,7 @@
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Register Expense Payment Method</span>
+                                            <span>Register Budget Registration Method</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->

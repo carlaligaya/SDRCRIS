@@ -72,7 +72,7 @@ public class ViewBudgetType extends BaseServlet {
 
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
-        session.setAttribute("type", request.getParameter("BTID"));
+        session.setAttribute("Btype", request.getParameter("BTID"));
         
         ServletContext context = getServletContext();
         RequestDispatcher dispatcher = context.getRequestDispatcher("/reg_budget_type.jsp");

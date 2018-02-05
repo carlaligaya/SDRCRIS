@@ -40,7 +40,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Register Budget Type</h1>
+                                        <h1>Register Budget Registration Type</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -61,7 +61,7 @@
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Register Budget Type</span>
+                                            <span>Register Budget Registration Type</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -79,31 +79,30 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <%                                                                    BudgetDAO bDAO = new BudgetDAO();
+                                                                <%                                                                    
+                                                                    BudgetDAO bDAO = new BudgetDAO();
                                                                     BudgetRegistrationType bt = new BudgetRegistrationType();
-
-                                                                    if (session.getAttribute("type") != null) {
-                                                                        bt = bDAO.getBudgetType(Integer.parseInt(session.getAttribute("type").toString()));
+                                                                    if (session.getAttribute("Btype") != null) {
+                                                                        bt = bDAO.getBudgetType(Integer.parseInt(session.getAttribute("Btype").toString()));
                                                                 %>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE BUDGET TYPE</span>
-                                                                <%} else {%>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER BUDGET TYPE</span>
-                                                                <%%>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE BUDGET REGISTRATION TYPES</span>
+                                                                <%}else{%>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER BUDGET REGISTRATION TYPES</span>
+                                                                <%}%>
                                                             </div>
 
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10" action="RegisterBudgetType" method="post">
+                                                                <form class="col-md-10" method="post" action="RegisterBudgetType">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="BTname" <%if (session.getAttribute("type") != null){%> value="<%= bt.getName()%>" <%}%>required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="BTname" <%if (session.getAttribute("Btype") != null){%> value="<%= bt.getName()%>" <%}%>required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="BTdescription" required><%if (session.getAttribute("type") != null) {%> <%= bt.getDescription() %> <%}%></textarea>
-
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="BTdescription" required><%if (session.getAttribute("Btype") != null){%> <%= bt.getDescription() %> <%}%></textarea>
                                                                     </div>
 
 
@@ -111,11 +110,11 @@
 
                                                                     <div class="pull-left">
                                                                         <%
-                                                                            if (session.getAttribute("type") != null) {
+                                                                            if (session.getAttribute("Btype") != null) {
                                                                         %>
-                                                                        <input type="submit" class="btn btn-info" value="Update Budget Category" onclick="form.action = 'UpdateBudgetType';">
+                                                                        <input type="submit" class="btn btn-info" value="Update Budget Registration Type" onclick="form.action = 'UpdateBudgetType';">
                                                                         <%} else {%>
-                                                                        <input type="submit" class="btn btn-info" value="Register Budget Category">
+                                                                        <input type="submit" class="btn btn-info" value="Register Budget Registration Type">
                                                                         <%}%>
                                                                     </div>                                              
                                                                 </form>
@@ -135,7 +134,7 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED BUDGET TYPES</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED BUDGET REGISTRATION TYPES</span>
                                                             </div>
 
                                                         </div>
@@ -161,7 +160,7 @@
                                                                                 </tr>
                                                                             </tfoot>
                                                                             <tbody>
-                                                                                <%
+                                                                                <%                                                                                
                                                                                     ArrayList<BudgetRegistrationType> types = new ArrayList<BudgetRegistrationType>();
                                                                                     types = bDAO.getActiveBudgetTypes();
 
@@ -170,7 +169,7 @@
                                                                                 <tr>
                                                                                     <td><%= types.get(i).getName()%></td>
                                                                                     <td><%= types.get(i).getDescription()%></td>
-                                                                                    <td><button name="BTID" value="<%= types.get(i).getBudgetregistration_typeID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateBudgetType';">Deactivate</button></td>
+                                                                                    <td><button name="BTID" value="<%= types.get(i).getBudgetregistration_typeID() %>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateBudgetType';">Deactivate</button></td>
                                                                                     <td><button name="BTID" value="<%= types.get(i).getBudgetregistration_typeID()%>" class="btn btn-info pull-right" >Update</button></td>
                                                                                 </tr>
                                                                                 <%}%>
@@ -181,9 +180,7 @@
                                                             </div>
                                                         </div>
                                                         <ul class="list-separated list-inline-xs hide">
-
                                                         </ul>
-
                                                     </div>
                                                 </div>
                                             </div>

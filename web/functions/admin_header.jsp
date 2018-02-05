@@ -54,7 +54,7 @@
                                                 
                                                 <li aria-haspopup="true" class="">
                                                     <a href="reg_budget_type.jsp" class="nav-link">
-                                                        <i class="glyphicon glyphicon-th-list"></i> Budget Category</a>
+                                                        <i class="glyphicon glyphicon-th-list"></i> Budget Type</a>
                                                 </li>
                                               
                                             </ul>
