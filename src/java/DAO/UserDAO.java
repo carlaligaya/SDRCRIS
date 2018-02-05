@@ -569,4 +569,25 @@ public class UserDAO {
         return types;
     }
     
+    public boolean RegisterPrincipalInvestigator (int pID){
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "UPDATE `sdrcris`.user SET `usertype` = 2 WHERE `userID` = ?;";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, pID);
+
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
 }

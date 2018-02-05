@@ -8,3 +8,5 @@
 <!DOCTYPE html>
 <% session.invalidate(); %> 
 <jsp:forward page="login.jsp" />
+
+// TEST
