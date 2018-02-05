@@ -62,7 +62,7 @@
                                             <i class="fa fa-circle"></i>
 
                                         </li><li>
-                                            <span>Update User Information</span>
+                                            <span>Register New User</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -80,73 +80,66 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE USER INFORMATION</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">Register New User</span>
                                                             </div>
 
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10">
+                                                                <form class="col-md-10" method="post" action="RegisterUser">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">First Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" name="fn" required>
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Middle Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Middle Name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Middle Name" name="mn" required>
                                                                     </div>
 
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Last Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" name="ln" required>
                                                                     </div>
 
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Email</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="em" required>
                                                                     </div>
 
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Password</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Password" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Password" name="p1" required>
                                                                     </div>
 
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Re-enter Password</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Re-Enter Password" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Re-Enter Password" name="p2" required>
                                                                     </div>
 
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Specializations</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Specializations" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Specializations" name="spe" required>
                                                                         <small>Please input all specializations separated by a comma.</small></div>
 
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Masters</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masters" >
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masters" name="mas" >
                                                                         <small>Leave blank if not applicable.</small> </div>
 
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Doctorate</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doctorate" >
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doctorate" name="doc">
                                                                         <small>Leave blank if not applicable.</small></div>
-                                                                    <div class="form-group">
-                                                                        <label for="sel1">User Type</label>
-                                                                        <select class="form-control" id="sel1">
-                                                                            <option>System Administrator</option>
-                                                                            <option>System User</option>
-                                                                            <option>Public User</option>
-                                                                        </select>
-                                                                    </div> 
-                                                                    <input type="submit" class="btn btn-info pull left" value="Update User">
+                                                                    
+                                                                    <input type="submit" class="btn btn-info pull left" value="Register User">
                                                                 </form>
                                                             </div>                                              
                                                         </div>							

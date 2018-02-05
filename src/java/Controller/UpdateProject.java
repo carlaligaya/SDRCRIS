@@ -5,7 +5,8 @@
  */
 package Controller;
 
-import DAO.UserDAO;
+import DAO.ProjectDAO;
+import Model.Project;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Carl
  */
-public class RegisterPrincipalInvestigator extends BaseServlet {
+public class UpdateProject extends BaseServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,7 +30,6 @@ public class RegisterPrincipalInvestigator extends BaseServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -74,19 +74,25 @@ public class RegisterPrincipalInvestigator extends BaseServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        UserDAO uDAO = new UserDAO();
+        ProjectDAO pDAO = new ProjectDAO();
+        Project p = new Project();
 
-        if (uDAO.RegisterPrincipalInvestigator(Integer.parseInt(request.getParameter("PIID")))) {
+        p.setProjectID(Integer.parseInt(session.getAttribute("viewproject").toString()));
+        p.setName(request.getParameter("name"));
+        p.setDescription(request.getParameter("description"));
+
+        if (pDAO.EditProject(p)) {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('User has been successfully assigned as a Principal Investigator!');");
+            out.println("alert('Project Successfully Updated!');");
             out.println("location='/SDRCRIS/manage_project.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Please try again!');");
-            out.println("location='/SDRCRIS/reg_principal_investigator.jsp';");
+            out.println("alert('Project Unsuccessfully Updated!');");
+            out.println("location='/SDRCRIS/update_project.jsp';");
             out.println("</script>");
         }
+
     }
 
 }

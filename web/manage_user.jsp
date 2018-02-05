@@ -115,8 +115,7 @@
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-                                                                            <%                                                                                
-                                                                                UserDAO ud = new UserDAO();
+                                                                            <%                                                                                UserDAO ud = new UserDAO();
                                                                                 ArrayList<User> user = new ArrayList<User>();
 
                                                                                 user = ud.activeUsers();
@@ -135,10 +134,10 @@
                                                                                     <button name="UID" class="btn btn-info btn-lg" value="<%= user.get(i).getUserID()%>" onclick="form.action = 'DeactivateUser';" />
                                                                                     <span class="glyphicon glyphicon-scissors"></span>
                                                                                 </td>  
-                                                                                    <td>  
-                                                                                        <button name="UID" class="btn btn-info btn-lg" value="<%= user.get(i).getUserID()%>" />
-                                                                                        <span class="glyphicon glyphicon-wrench"></span>
-                                                                                    </td>
+                                                                                <td>  
+                                                                                    <button name="UID" class="btn btn-info btn-lg" value="<%= user.get(i).getUserID()%>" />
+                                                                                    <span class="glyphicon glyphicon-wrench"></span>
+                                                                                </td>
                                                                             </tr>
                                                                             <%}%>
                                                                         </tbody>
@@ -147,7 +146,7 @@
                                                             </div>
                                                             <br>
                                                         </div>
-
+                                                        <a href="reg_new_user.jsp" class="btn btn-danger" role="button">REGISTER NEW USER</a>
                                                     </div>
                                                     <ul class="list-separated list-inline-xs hide">
 

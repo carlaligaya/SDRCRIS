@@ -130,7 +130,7 @@
                                                                                 <td><% if (user.get(i).getDoctorate() == null) { %> <%} else {%> <%= user.get(i).getDoctorate()%> <%}%></td>
                                                                                 <td><%= user.get(i).getRegistrationDate()%></td>
                                                                                 <td>
-                                                                                    <input type="submit" class="btn btn-danger btn-lg" value="<%= user.get(i).getUserID()%>" name="PIID">
+                                                                                    <button type="submit" class="btn btn-danger btn-lg" value="<%= user.get(i).getUserID()%>" name="PIID"/>
                                                                                     <span class="glyphicon glyphicon-user"></span>
                                                                                 </td> 
                                                                             </tr>

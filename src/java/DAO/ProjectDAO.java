@@ -33,9 +33,10 @@ import Model.User;
 public class ProjectDAO {
 
     public boolean RegisterProject(Project u) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
 
         try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
@@ -45,8 +46,12 @@ public class ProjectDAO {
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1, u.getName());
-            ps.setDate(2, (java.sql.Date) df.parse(u.getStartdate()));
-            ps.setDate(3, (java.sql.Date) df.parse(u.getEnddate()));
+            String start = u.getStartdate();
+            Date s = sdf.parse(start);
+            String end = u.getEnddate();
+            Date e = sdf.parse(end);
+            ps.setDate(2, new java.sql.Date(s.getTime()));
+            ps.setDate(3, new java.sql.Date(e.getTime()));
             ps.setString(4, u.getDescription());
 
             ps.executeUpdate();
@@ -273,7 +278,7 @@ public class ProjectDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "UPDATE `sdrcris`.project SET `name` = ? AND `description` = ? WHERE `projectID` = ?;";
+            String query = "UPDATE `sdrcris`.project SET `name` = ?, `description` = ? WHERE `projectID` = ?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1, u.getName());

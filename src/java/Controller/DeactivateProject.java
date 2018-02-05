@@ -78,12 +78,12 @@ public class DeactivateProject extends BaseServlet {
         if (pDAO.DeactivateProject(Integer.parseInt(request.getParameter("pID")))) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Successfully Deactivated!');");
-            out.println("location='/SDRC/manage_project.jsp';");
+            out.println("location='/SDRCRIS/manage_project.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Project Unsuccessfully Deactivated!');");
-            out.println("location='/SDRC/manage_project.jsp';");
+            out.println("location='/SDRCRIS/manage_project.jsp';");
             out.println("</script>");
         }
     }

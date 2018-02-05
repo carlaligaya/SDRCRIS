@@ -75,7 +75,7 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER NEW USER TYPE</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">INPUT PROJECT EXPENSES</span>
                                                             </div>
 
                                                         </div>
@@ -85,17 +85,37 @@
                                                                 <form class="col-md-10">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Amount</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Amount" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Remarks</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required></textarea>
+                                                                        <label for="exampleInputEmail1">Remarks on Expense</label>
+                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Remarks" required></textarea>
+
+                                                                    </div>
+                                                                    
+                                                                    <div class="form-group"> 
+                                                                        <label for="exampleInputEmail1">Expense Method</label>
+                                                                    <select class="js-example-basic-single" name="state" style="width:100%">
+                                                                        <option value="AL">Alabama</option>
+                                                                          ...
+                                                                        <option value="WY">Wyoming</option>
+                                                                      </select>
 
                                                                     </div>
 
+                                                                         
+                                                                    <div class="form-group"> 
+                                                                        <label for="exampleInputEmail1">Expense Category</label>
+                                                                    <select class="js-example-basic-single" name="state" style="width:100%">
+                                                                        <option value="AL">Alabama</option>
+                                                                          ...
+                                                                        <option value="WY">Wyoming</option>
+                                                                      </select>
+
+                                                                    </div>
 
                                                                     <div class="pull-left">
-                                                                        <input type="submit" class="btn btn-info" value="Register User Types">
+                                                                        <input type="submit" class="btn btn-info" value="Register Expense">
                                                                     </div>                                              
                                                                 </form>
 
@@ -114,7 +134,7 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED USER TYPES</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED PROJECT EXPENSES</span>
                                                             </div>
 
                                                         </div>
@@ -124,23 +144,26 @@
                                                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th width="20%">Name</th>
-                                                                                <th width="65%">Description</th>
-                                                                                <th width="15%"></th>
+                                                                                <th width="20%">Amount</th>
+                                                                                <th width="50%">Remarks</th>
+                                                                                <th width="15%">Category</th>
+                                                                                <th width="15%">Method</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
                                                                             <tr>
-                                                                                <th>Name</th>
-                                                                                <th>Description</th>
-                                                                                <th></th>
+                                                                                     <th width="20%">Amount</th>
+                                                                                <th width="50%">Remarks</th>
+                                                                                <th width="15%">Category</th>
+                                                                                <th width="15%">Method</th>
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td>System Administrator</td>
-                                                                                <td>This controls the system bla bla bla</td>
-                                                                                <td><button type="button" class="btn btn-warning">DELETE</button></td>
+                                                                                <td>1,500</td>
+                                                                                <td>Expense was for food meeting of Jollibee</td>
+                                                                                <td>Food Expenses</td>
+                                                                                <td>Cash</td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -185,13 +208,16 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-
+    </div>
     <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
 <script src="assets/global/plugins/excanvas.min.js"></script> 
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
     <jsp:include page="dependencies/bottom_resources.jsp" />
+    <script>$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});</script>
 </body>
 
 </html>

@@ -132,6 +132,14 @@
         <servlet-name>ViewBudgetType</servlet-name>
         <servlet-class>Controller.ViewBudgetType</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterPrincipalInvestigator</servlet-name>
+        <servlet-class>Controller.RegisterPrincipalInvestigator</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProject</servlet-name>
+        <servlet-class>Controller.UpdateProject</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -263,6 +271,14 @@
     <servlet-mapping>
         <servlet-name>ViewBudgetType</servlet-name>
         <url-pattern>/ViewBudgetType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterPrincipalInvestigator</servlet-name>
+        <url-pattern>/RegisterPrincipalInvestigator</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProject</servlet-name>
+        <url-pattern>/UpdateProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

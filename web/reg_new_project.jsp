@@ -7,6 +7,8 @@
 <%@page import="DAO.UserDAO"%>
 <%@page import="Model.User"%>
 <%@page import="java.util.ArrayList"%>
+
+<%@include file="functions/security.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,12 +73,12 @@
                                             <div class="page-content-inner">
                                                 <!----BODY--->
                                                 <div class="row">
-                                                    <div class="col-md-6 col-sm-6">
+                                                    <div class="col-md-12 col-sm-12">
                                                         <div class="portlet light ">
                                                             <div class="portlet-title">
                                                                 <div class="caption caption-md">
                                                                     <i class="icon-bar-chart font-dark hide"></i>
-                                                                    <span class="caption-subject font-green-steel uppercase bold">STEP 1: INPUT PROJECT DETAILS</span>
+                                                                    <span class="caption-subject font-green-steel uppercase bold">INPUT PROJECT DETAILS</span>
                                                                 </div>
 
                                                             </div>
@@ -92,7 +94,16 @@
                                                                             <label for="exampleInputEmail1">Description</label>
                                                                             <textarea class="form-control"  aria-describedby="emailHelp" placeholder="Description" name="pDescription" required></textarea>
 
-                                                                        </div>		
+                                                                        </div>	
+                                                                                <div class="form-group">
+                                                                            <label for="exampleInputEmail1">Name</label>
+                                                                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  name="pStart" required>
+                                                                        </div>
+                                                                                <div class="form-group">
+                                                                            <label for="exampleInputEmail1">Name</label>
+                                                                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="pEnd" required>
+                                                                        </div>
+                                                                        <input type="submit" class="btn btn-info" value="REGISTER NEW PROJECT">
                                                                         <div class="pull-left">
                                                                         </div>                                              
                                                                     </div>
@@ -107,64 +118,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 col-sm-6">
-                                                        <div class="portlet light ">
-                                                            <div class="portlet-title">
-                                                                <div class="caption caption-md">
-                                                                    <i class="icon-bar-chart font-dark hide"></i>
-                                                                    <span class="caption-subject font-green-steel uppercase bold">STEP 2: REGISTER PROJECT MEMBERS</span>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="portlet-body">
-                                                                <div class="row list-separated">
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th width="30%">First Name</th>
-                                                                                    <th width="30%">Middle Name</th>
-                                                                                    <th width="30%">Last Name</th>
-                                                                                    <th width="10%"></th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tfoot>
-                                                                                <tr>
-                                                                                    <th width="30%">First Name</th>
-                                                                                    <th width="30%">Middle Name</th>
-                                                                                    <th width="30%">Last Name</th>
-                                                                                    <th width="10%"></th>
-
-                                                                                </tr>
-                                                                            </tfoot>
-                                                                            <tbody>
-                                                                                <%
-                                                                                    UserDAO uDAO = new UserDAO();
-                                                                                    ArrayList<User> users = new ArrayList<User>();
-
-                                                                                    users = uDAO.activeUsers();
-                                                                                    for (int i = 0; i < users.size(); i++) {
-                                                                                %>
-                                                                                <tr>
-                                                                                    <td><%= users.get(i).getFirstName()%></td>
-                                                                                    <td><%= users.get(i).getMiddleName()%></td>
-                                                                                    <td><%= users.get(i).getLastName()%></td>
-                                                                                    <td></td>
-                                                                                </tr>
-                                                                                <%}%>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <ul class="list-separated list-inline-xs hide">
-
-                                                            </ul>
-
-                                                        </div>
-
-                                                        <input type="submit" class="btn btn-info pull-right" value="Register New Project">
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
 
