@@ -79,7 +79,15 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
+                                                                <%                                                                    ExpenseCategory ec = new ExpenseCategory();
+                                                                    ExpenseDAO eDAO = new ExpenseDAO();
+                                                                    if (session.getAttribute("category") != null) {
+                                                                        ec = eDAO.getExpenseCategory(Integer.parseInt(session.getAttribute("category").toString()));
+                                                                %>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE EXPENSE CATEGORY</span>
+                                                                <%} else {%>
                                                                 <span class="caption-subject font-green-steel uppercase bold">REGISTER EXPENSE CATEGORY</span>
+                                                                <%}%>
                                                             </div>
 
                                                         </div>
@@ -89,11 +97,11 @@
                                                                 <form class="col-md-10" action="RegisterExpenseCategory" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="ECname" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="ECname" <% if (session.getAttribute("category") != null) {%> value="<%= ec.getName()%>" <%}%> required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="ECdescription" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="ECdescription" required><% if (session.getAttribute("cetegory") != null) {%> <%= ec.getDescription()%> <%}%></textarea>
 
                                                                     </div>
 
@@ -101,7 +109,13 @@
 
 
                                                                     <div class="pull-left">
+                                                                        <%
+                                                                            if (session.getAttribute("category") != null) {
+                                                                        %>
+                                                                        <input type="submit" class="btn btn-info" value="Update Expense Category" onclick="form.action = 'UpdateExpenseCategory';">
+                                                                        <%} else {%>
                                                                         <input type="submit" class="btn btn-info" value="Register Expense Category">
+                                                                        <%}%>
                                                                     </div>                                              
                                                                 </form>
 
@@ -127,38 +141,42 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tfoot>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>                                    
-                                                                        </tfoot>
-                                                                        <tbody>
-                                                                            <%
-                                                                                ExpenseDAO eDAO = new ExpenseDAO();
-                                                                                ArrayList<ExpenseCategory> categories = new ArrayList<ExpenseCategory>();
-                                                                                
-                                                                                categories = eDAO.getActiveCategories();
-                                                                                
-                                                                                for(int i = 0; i < categories.size(); i++){
-                                                                            %>
-                                                                            <tr>
-                                                                                <td><%= categories.get(i).getName()%></td>
-                                                                                <td><%= categories.get(i).getDescription()%></td>
-                                                                                <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" >Update</button></td>               
-                                                                            </tr>
-                                                                            <%}%>
-                                                                        </tbody>
-                                                                    </table>
+                                                                    <form class="col-md-10" action="ViewExpenseCategory" method="post">
+                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>                                    
+                                                                            </tfoot>
+                                                                            <tbody>
+                                                                                <%
+                                                                                    ArrayList<ExpenseCategory> categories = new ArrayList<ExpenseCategory>();
+
+                                                                                    categories = eDAO.getActiveCategories();
+
+                                                                                    for (int i = 0; i < categories.size(); i++) {
+                                                                                %>
+                                                                                <tr>
+                                                                                    <td><%= categories.get(i).getName()%></td>
+                                                                                    <td><%= categories.get(i).getDescription()%></td>
+                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateExpenseCategory' ;">Deactivate</button></td>               
+                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" >Update</button></td>               
+                                                                                </tr>
+                                                                                <%}%>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -200,12 +218,12 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
-    <jsp:include page="dependencies/bottom_resources.jsp" />
-</body>
+        <!--[if lt IE 9]>
+    <script src="assets/global/plugins/respond.min.js"></script>
+    <script src="assets/global/plugins/excanvas.min.js"></script> 
+    <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+    <![endif]-->
+        <jsp:include page="dependencies/bottom_resources.jsp" />
+    </body>
 
 </html>

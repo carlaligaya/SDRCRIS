@@ -8,7 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.BudgetDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%--<%@include file="functions/security.jsp" %>--%>
+<%@include file="functions/security.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
@@ -79,7 +79,16 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
+                                                                <%                                                                    BudgetDAO bDAO = new BudgetDAO();
+                                                                    BudgetRegistrationType bt = new BudgetRegistrationType();
+
+                                                                    if (session.getAttribute("type") != null) {
+                                                                        bt = bDAO.getBudgetType(Integer.parseInt(session.getAttribute("type").toString()));
+                                                                %>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE BUDGET TYPE</span>
+                                                                <%} else {%>
                                                                 <span class="caption-subject font-green-steel uppercase bold">REGISTER BUDGET TYPE</span>
+                                                                <%%>
                                                             </div>
 
                                                         </div>
@@ -89,11 +98,11 @@
                                                                 <form class="col-md-10" action="RegisterBudgetType" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="BTname" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="BTname" <%if (session.getAttribute("type") != null){%> value="<%= bt.getName()%>" <%}%>required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="BTdescription" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="BTdescription" required><%if (session.getAttribute("type") != null) {%> <%= bt.getDescription() %> <%}%></textarea>
 
                                                                     </div>
 
@@ -101,7 +110,13 @@
 
 
                                                                     <div class="pull-left">
+                                                                        <%
+                                                                            if (session.getAttribute("type") != null) {
+                                                                        %>
+                                                                        <input type="submit" class="btn btn-info" value="Update Budget Category" onclick="form.action = 'UpdateBudgetType';">
+                                                                        <%} else {%>
                                                                         <input type="submit" class="btn btn-info" value="Register Budget Category">
+                                                                        <%}%>
                                                                     </div>                                              
                                                                 </form>
 
@@ -127,38 +142,41 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tfoot>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </tfoot>
-                                                                        <tbody>
-                                                                            <%
-                                                                                BudgetDAO bDAO = new BudgetDAO();
-                                                                                ArrayList<BudgetRegistrationType> types = new ArrayList<BudgetRegistrationType>();
+                                                                    <form action="ViewBudgetType" method="post">
+                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                            <tbody>
+                                                                                <%
+                                                                                    ArrayList<BudgetRegistrationType> types = new ArrayList<BudgetRegistrationType>();
+                                                                                    types = bDAO.getActiveBudgetTypes();
 
-                                                                                types = bDAO.getActiveBudgetTypes();
-
-                                                                                for (int i = 0; i < types.size(); i++) {
-                                                                            %>
-                                                                            <tr>
-                                                                                <td><%= types.get(i).getName()%></td>
-                                                                                <td><%= types.get(i).getDescription()%></td>
-                                                                                <td><button name="BTID" value="<%= types.get(i).getBudgetregistration_typeID()%>" class="btn btn-info pull-right" >Update</button></td>
-                                                                            </tr>
-                                                                            <%}%>
-                                                                        </tbody>
-                                                                    </table>
+                                                                                    for (int i = 0; i < types.size(); i++) {
+                                                                                %>
+                                                                                <tr>
+                                                                                    <td><%= types.get(i).getName()%></td>
+                                                                                    <td><%= types.get(i).getDescription()%></td>
+                                                                                    <td><button name="BTID" value="<%= types.get(i).getBudgetregistration_typeID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateBudgetType';">Deactivate</button></td>
+                                                                                    <td><button name="BTID" value="<%= types.get(i).getBudgetregistration_typeID()%>" class="btn btn-info pull-right" >Update</button></td>
+                                                                                </tr>
+                                                                                <%}%>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -5,8 +5,6 @@
  */
 package Controller;
 
-import DAO.ExpenseDAO;
-import Model.MethodOfExpense;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author carl_
+ * @author Carl
  */
-public class UpdateExpenseMethod extends BaseServlet {
+public class ViewBudgetType extends BaseServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,6 +30,7 @@ public class UpdateExpenseMethod extends BaseServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -73,28 +72,11 @@ public class UpdateExpenseMethod extends BaseServlet {
 
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        ExpenseDAO eDAO = new ExpenseDAO();
-        MethodOfExpense me = new MethodOfExpense();
+        session.setAttribute("type", request.getParameter("BTID"));
         
-        me.setExpensemethodID(Integer.parseInt(session.getAttribute("method").toString()));
-        me.setName(request.getParameter("MEname"));
-        me.setDescription(request.getParameter("MEdescription"));
-
-        if (eDAO.updateExpenseMethod(me)) {
-            session.setAttribute("method", null);
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Expense Method Successfully Updated!');");
-            out.println("location='/SDRCRIS/reg_method_expense.jsp';");
-            out.println("</script>");
-        } else {
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Expense Method Successfully Updated!');");
-            out.println("location='/SDRCRIS/reg_method_expense.jsp';");
-            out.println("</script>");
-        }
+        ServletContext context = getServletContext();
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/reg_budget_type.jsp");
+        dispatcher.forward(request, response);
     }
 
 }

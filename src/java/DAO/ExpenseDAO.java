@@ -54,7 +54,7 @@ public class ExpenseDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT `name` FROM `sdrcris`.`expense_category` WHERE `expensecategoryID` = ?;";
+            String query = "SELECT * FROM `sdrcris`.`expense_category` WHERE `expensecategoryID` = ?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, ecID);
@@ -211,7 +211,7 @@ public class ExpenseDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT `name` FROM `sdrcris`.`method_of_expense` WHERE `expensemethodID` = ?;";
+            String query = "SELECT * FROM `sdrcris`.`method_of_expense` WHERE `expensemethodID` = ?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, meID);

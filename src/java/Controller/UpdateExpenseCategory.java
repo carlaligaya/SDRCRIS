@@ -82,6 +82,7 @@ public class UpdateExpenseCategory extends BaseServlet {
         ec.setDescription(request.getParameter("ECdescription"));
 
         if (eDAO.updateExpenseCategory(ec)) {
+            session.setAttribute("category", null);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Expense Category Successfully Updated!');");
             out.println("location='/SDRCRIS/reg_category_expense.jsp';");

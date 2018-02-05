@@ -79,7 +79,16 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
+                                                                <%                                                                    
+                                                                    BudgetDAO bDAO = new BudgetDAO();
+                                                                    MethodOfBudgetRegistration bm = new MethodOfBudgetRegistration();
+                                                                    if (session.getAttribute("method") != null) {
+                                                                        bm = bDAO.getBudgetMethod(Integer.parseInt(session.getAttribute("method").toString()));
+                                                                %>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE BUDGET REGISTRATION METHODS</span>
+                                                                <%}else{%>
                                                                 <span class="caption-subject font-green-steel uppercase bold">REGISTER BUDGET REGISTRATION METHODS</span>
+                                                                <%}%>
                                                             </div>
 
                                                         </div>
@@ -89,18 +98,24 @@
                                                                 <form class="col-md-10" method="post" action="RegisterBudgetMethod">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="BMname" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="BMname" <%if (session.getAttribute("method") != null){%> value="<%= bm.getName()%>" <%}%>required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="BMdescription" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="BMdescription" required><%if (session.getAttribute("method") != null){%> <%= bm.getDescription() %> <%}%></textarea>
                                                                     </div>
 
 
 
 
                                                                     <div class="pull-left">
-                                                                        <input type="submit" class="btn btn-info" value="Register Expense Method">
+                                                                        <%
+                                                                            if (session.getAttribute("method") != null) {
+                                                                        %>
+                                                                        <input type="submit" class="btn btn-info" value="Update Budget Registration Method" onclick="form.action = 'UpdateBudgetMethod';">
+                                                                        <%} else {%>
+                                                                        <input type="submit" class="btn btn-info" value="Register Budget Registration Method">
+                                                                        <%}%>
                                                                     </div>                                              
                                                                 </form>
 
@@ -126,38 +141,42 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tfoot>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </tfoot>
-                                                                        <tbody>
-                                                                            <%
-                                                                                BudgetDAO bDAO = new BudgetDAO();
-                                                                                ArrayList<MethodOfBudgetRegistration> methods = new ArrayList<MethodOfBudgetRegistration>();
+                                                                    <form action="ViewBudgetMethod" method="post">
+                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                            <tbody>
+                                                                                <%                                                                                
+                                                                                    ArrayList<MethodOfBudgetRegistration> methods = new ArrayList<MethodOfBudgetRegistration>();
 
-                                                                                methods = bDAO.getActiveBudgetMethods();
+                                                                                    methods = bDAO.getActiveBudgetMethods();
 
-                                                                                for (int i = 0; i < methods.size(); i++) {
-                                                                            %>
-                                                                            <tr>
-                                                                                <td><%= methods.get(i).getName()%></td>
-                                                                                <td><%= methods.get(i).getDescription()%></td>
-                                                                                <td><button name="MBID" value="<%= methods.get(i).getRegistration_methodID()%>" class="btn btn-info pull-right" >Update</button></td>
-                                                                            </tr>
-                                                                            <%}%>
-                                                                        </tbody>
-                                                                    </table>
+                                                                                    for (int i = 0; i < methods.size(); i++) {
+                                                                                %>
+                                                                                <tr>
+                                                                                    <td><%= methods.get(i).getName()%></td>
+                                                                                    <td><%= methods.get(i).getDescription()%></td>
+                                                                                    <td><button name="MBID" value="<%= methods.get(i).getRegistration_methodID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateBudgetMethod';">Deactivate</button></td>
+                                                                                    <td><button name="MBID" value="<%= methods.get(i).getRegistration_methodID()%>" class="btn btn-info pull-right" >Update</button></td>
+                                                                                </tr>
+                                                                                <%}%>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -197,12 +216,12 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
-    <jsp:include page="dependencies/bottom_resources.jsp" />
-</body>
+        <!--[if lt IE 9]>
+    <script src="assets/global/plugins/respond.min.js"></script>
+    <script src="assets/global/plugins/excanvas.min.js"></script> 
+    <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+    <![endif]-->
+        <jsp:include page="dependencies/bottom_resources.jsp" />
+    </body>
 
 </html>

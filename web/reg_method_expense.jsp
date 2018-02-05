@@ -79,7 +79,15 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
+                                                                <%                                                                    MethodOfExpense me = new MethodOfExpense();
+                                                                    ExpenseDAO eDAO = new ExpenseDAO();
+                                                                    if (session.getAttribute("method") != null) {
+                                                                        me = eDAO.getExpenseMethod(Integer.parseInt(session.getAttribute("method").toString()));
+                                                                %>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE EXPENSE PAYMENT METHODS</span>
+                                                                <%} else {%>
                                                                 <span class="caption-subject font-green-steel uppercase bold">REGISTER EXPENSE PAYMENT METHODS</span>
+                                                                <%}%>
                                                             </div>
 
                                                         </div>
@@ -89,11 +97,11 @@
                                                                 <form class="col-md-10" action="RegisterExpenseMethod" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="MEname" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="MEname" <% if (session.getAttribute("method") != null) {%> value="<%= me.getName()%>" <%}%>required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="MEdescription" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="MEdescription" required><% if (session.getAttribute("method") != null) {%> <%= me.getDescription()%> <%}%></textarea>
 
                                                                     </div>
 
@@ -101,7 +109,13 @@
 
 
                                                                     <div class="pull-left">
+                                                                        <%
+                                                                            if (session.getAttribute("method") != null) {
+                                                                        %>
+                                                                        <input type="submit" class="btn btn-info" value="Update Expense Method" onclick="form.action = 'UpdateExpenseMethod' ;">
+                                                                        <%} else {%>
                                                                         <input type="submit" class="btn btn-info" value="Register Expense Method">
+                                                                        <%}%>
                                                                     </div>                                              
                                                                 </form>
 
@@ -127,38 +141,42 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tfoot>
-                                                                            <tr>
-                                                                                <th width="40%">Name</th>
-                                                                                <th width="60%">Description</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </tfoot>
-                                                                        <tbody>
-                                                                            <%
-                                                                                ExpenseDAO eDAO = new ExpenseDAO();
-                                                                                ArrayList<MethodOfExpense> methods = new ArrayList<MethodOfExpense>();
+                                                                    <form action="ViewExpenseMethod" method="post">
+                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                            <tbody>
+                                                                                <%
+                                                                                    ArrayList<MethodOfExpense> methods = new ArrayList<MethodOfExpense>();
 
-                                                                                methods = eDAO.getActiveMethods();
+                                                                                    methods = eDAO.getActiveMethods();
 
-                                                                                for (int i = 0; i < methods.size(); i++) {
-                                                                            %>
-                                                                            <tr>
-                                                                                <td><%= methods.get(i).getName()%></td>
-                                                                                <td><%= methods.get(i).getDescription()%></td>
-                                                                                <td><button name="MEID" value="<%= methods.get(i).getExpensemethodID()%>" class="btn btn-info pull-right" >Update</button></td>
-                                                                            </tr>
-                                                                            <%}%>
-                                                                        </tbody>
-                                                                    </table>
+                                                                                    for (int i = 0; i < methods.size(); i++) {
+                                                                                %>
+                                                                                <tr>
+                                                                                    <td><%= methods.get(i).getName()%></td>
+                                                                                    <td><%= methods.get(i).getDescription()%></td>
+                                                                                    <td><button name="MEID" value="<%= methods.get(i).getExpensemethodID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateExpenseMethod' ;">Deactivate</button></td>
+                                                                                    <td><button name="MEID" value="<%= methods.get(i).getExpensemethodID()%>" class="btn btn-info pull-right" >Update</button></td>
+                                                                                </tr>
+                                                                                <%}%>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -198,12 +216,12 @@
                 <!-- END FOOTER -->
             </div>
         </div>
-    <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
-    <jsp:include page="dependencies/bottom_resources.jsp" />
-</body>
+        <!--[if lt IE 9]>
+    <script src="assets/global/plugins/respond.min.js"></script>
+    <script src="assets/global/plugins/excanvas.min.js"></script> 
+    <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+    <![endif]-->
+        <jsp:include page="dependencies/bottom_resources.jsp" />
+    </body>
 
 </html>

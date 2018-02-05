@@ -116,6 +116,22 @@
         <servlet-name>DeactivateProject</servlet-name>
         <servlet-class>Controller.DeactivateProject</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewExpenseMethod</servlet-name>
+        <servlet-class>Controller.ViewExpenseMethod</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewExpenseCategory</servlet-name>
+        <servlet-class>Controller.ViewExpenseCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBudgetMethod</servlet-name>
+        <servlet-class>Controller.ViewBudgetMethod</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBudgetType</servlet-name>
+        <servlet-class>Controller.ViewBudgetType</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -231,6 +247,22 @@
     <servlet-mapping>
         <servlet-name>DeactivateProject</servlet-name>
         <url-pattern>/DeactivateProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewExpenseMethod</servlet-name>
+        <url-pattern>/ViewExpenseMethod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewExpenseCategory</servlet-name>
+        <url-pattern>/ViewExpenseCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBudgetMethod</servlet-name>
+        <url-pattern>/ViewBudgetMethod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBudgetType</servlet-name>
+        <url-pattern>/ViewBudgetType</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
