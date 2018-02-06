@@ -4,11 +4,11 @@
     Author     : RDE
 --%>
 
-<%@page import="Model.ProjectRole"%>
+<%@page import="Model.ExpenseCategory"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DAO.RolesDAO"%>
-<%@include file="functions/security.jsp" %>
+<%@page import="DAO.ExpenseDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="functions/security.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
@@ -40,7 +40,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Register Project Role</h1>
+                                        <h1>Register Funding Organization</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -57,17 +57,20 @@
                                     <!-- BEGIN PAGE BREADCRUMBS -->
                                     <ul class="page-breadcrumb breadcrumb">
                                         <li>
-                                            <span>Administrative</span>
+                                            <span>Budget Tracker</span>
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Register Project Role</span>
+                                            <span>Register Funding Organization</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
-                                    <!-- BEGIN PAGE CONTENT INNER -->
+                                    <!----BODY--->
+
                                     <div class="page-content-inner">
                                         <!----BODY--->
+
+                                        <!-- BEGIN PAGE CONTENT INNER -->
                                         <div class="page-content-inner">
                                             <!----BODY--->
                                             <div class="row">
@@ -76,25 +79,52 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER NEW PROJECT ROLE</span>
+                                                                <%                                                                    ExpenseCategory ec = new ExpenseCategory();
+                                                                    ExpenseDAO eDAO = new ExpenseDAO();
+                                                                    if (session.getAttribute("category") != null) {
+                                                                        ec = eDAO.getExpenseCategory(Integer.parseInt(session.getAttribute("category").toString()));
+                                                                %>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE EXPENSE CATEGORY</span>
+                                                                <%} else {%>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER FUNDING ORGANIZATION</span>
+                                                                <%}%>
                                                             </div>
 
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10" action="RegisterProjectRole" method="post">
+                                                                <form class="col-md-10" action="RegisterExpenseCategory" method="post">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Role</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name ="role" required>
+                                                                        <label for="exampleInputEmail1">Name</label>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="ECname" <% if (session.getAttribute("category") != null) {%> value="<%= ec.getName()%>" <%}%> required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control"  aria-describedby="emailHelp" placeholder="Description" name="description" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="ECdescription" required><% if (session.getAttribute("cetegory") != null) {%> <%= ec.getDescription()%> <%}%></textarea>
 
-                                                                    </div>		
+                                                                    </div>
+                                                                        
+                                                                    <div class="form-group">
+                                                                          <label for="exampleInputEmail1">Select Funding Organization </label>
+                                                                      
+                                                                        <select class="js-example-basic-single" style="width:100%" name="state">
+                                                                          <option value="AL">Alabama</option>
+                                                                            ...
+                                                                          <option value="WY">Wyoming</option>
+                                                                        </select>
+                                                                        </div>
+
+
+
                                                                     <div class="pull-left">
-                                                                        <input type="submit" class="btn btn-info" value="Register User Types">
+                                                                        <%
+                                                                            if (session.getAttribute("category") != null) {
+                                                                        %>
+                                                                        <input type="submit" class="btn btn-info" value="Update Funding Organization" onclick="form.action = 'UpdateExpenseCategory';">
+                                                                        <%} else {%>
+                                                                        <input type="submit" class="btn btn-info" value="Register Funding Organization">
+                                                                        <%}%>
                                                                     </div>                                              
                                                                 </form>
 
@@ -113,41 +143,44 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED PROJECT ROLE TYPE</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTERED FUNDING ORGANIZATIONS</span>
                                                             </div>
 
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <form method="post" action="DeactivateProjectRole">
+                                                                    <form class="col-md-10" action="ViewExpenseCategory" method="post">
                                                                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th width="20%">Name</th>
-                                                                                    <th width="65%">Description</th>
-                                                                                    <th width="15%"></th>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tfoot>
                                                                                 <tr>
-                                                                                    <th>Name</th>
-                                                                                    <th>Description</th>
+                                                                                    <th width="40%">Name</th>
+                                                                                    <th width="60%">Description</th>
                                                                                     <th></th>
-                                                                                </tr>
+                                                                                    <th></th>
+                                                                                </tr>                                    
                                                                             </tfoot>
                                                                             <tbody>
                                                                                 <%
-                                                                                    RolesDAO rd = new RolesDAO();
-                                                                                    ArrayList<ProjectRole> roles = new ArrayList<ProjectRole>();
+                                                                                    ArrayList<ExpenseCategory> categories = new ArrayList<ExpenseCategory>();
 
-                                                                                    roles = rd.getActiveRoles();
-                                                                                    for (int i = 0; i < roles.size(); i++) {
+                                                                                    categories = eDAO.getActiveCategories();
+
+                                                                                    for (int i = 0; i < categories.size(); i++) {
                                                                                 %>
                                                                                 <tr>
-                                                                                    <td><%= roles.get(i).getRole()%></td>
-                                                                                    <td><%= roles.get(i).getDescription()%></td>
-                                                                                    <td>  <button type="submit" class="btn btn-warning" name="rID" value="<%= roles.get(i).getRoleID()%>">Deactivate</button></td>
+                                                                                    <td><%= categories.get(i).getName()%></td>
+                                                                                    <td><%= categories.get(i).getDescription()%></td>
+                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateExpenseCategory' ;">Deactivate</button></td>               
+                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" >Update</button></td>               
                                                                                 </tr>
                                                                                 <%}%>
                                                                             </tbody>
@@ -165,41 +198,44 @@
                                             </div>
                                         </div>
 
-
-
                                     </div>
-                                    <!-- END PAGE CONTENT INNER -->
+
+
                                 </div>
+                                <!-- END PAGE CONTENT INNER -->
                             </div>
-                            <!-- END PAGE CONTENT BODY -->
-                            <!-- END CONTENT BODY -->
                         </div>
-                        <!-- END CONTENT -->
-                        <!-- BEGIN QUICK SIDEBAR -->
-                        <a href="javascript:;" class="page-quick-sidebar-toggler">
-                            <i class="icon-login"></i>
-                        </a>
-
-                        <!-- END QUICK SIDEBAR -->
+                        <!-- END PAGE CONTENT BODY -->
+                        <!-- END CONTENT BODY -->
                     </div>
-                    <!-- END CONTAINER -->
-                </div>
-            </div>
-            <div class="page-wrapper-row">
-                <div class="page-wrapper-bottom">
-                    <!-- BEGIN FOOTER -->
+                    <!-- END CONTENT -->
+                    <!-- BEGIN QUICK SIDEBAR -->
+                    <a href="javascript:;" class="page-quick-sidebar-toggler">
+                        <i class="icon-login"></i>
+                    </a>
 
-                    <jsp:include page="functions/footer.jsp" />
-                    <!-- END FOOTER -->
+                    <!-- END QUICK SIDEBAR -->
                 </div>
+                <!-- END CONTAINER -->
+            </div>
+        </div>
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-bottom">
+                <!-- BEGIN FOOTER -->
+
+                <jsp:include page="functions/footer.jsp" />
+                <!-- END FOOTER -->
             </div>
         </div>
         <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
+    <script src="assets/global/plugins/respond.min.js"></script>
+    <script src="assets/global/plugins/excanvas.min.js"></script> 
+    <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+    <![endif]-->
         <jsp:include page="dependencies/bottom_resources.jsp" />
+        <script>$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});</script>
     </body>
 
 </html>

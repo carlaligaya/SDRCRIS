@@ -5,12 +5,10 @@
  */
 package Controller;
 
-import DAO.RolesDAO;
-import Model.ProjectRole;
+import DAO.ProjectDAO;
+import Model.Funding;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author carl_
+ * @author Carl
  */
-public class RegisterProjectRole extends BaseServlet {
+public class UpdateFunding extends BaseServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,21 +74,24 @@ public class RegisterProjectRole extends BaseServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        RolesDAO rd = new RolesDAO();
-        ProjectRole r = new ProjectRole();
+        ProjectDAO pDAO = new ProjectDAO();
+        Funding f = new Funding();
+        
+        f.setFundingorganizationID(Integer.parseInt(session.getAttribute("funding").toString()));
+        f.setFundingorganization_name(request.getParameter("fName"));
+        f.setDescription(request.getParameter("fDescription"));
+        f.setFundingorganization_type(Integer.parseInt(request.getParameter("fType")));
 
-        r.setRole(request.getParameter("role"));
-        r.setDescription(request.getParameter("description"));
-
-        if (rd.addRole(r)) {
+        if (pDAO.updateFunding(f)) {
+            session.setAttribute("funding", null);
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Project Role Successfully Added!');");
-            out.println("location='/SDRCRIS/reg_project_role.jsp';");
+            out.println("alert('Funding Organization has been Successfully Updated!');");
+            out.println("location='/SDRCRIS/reg_funding_organization.jsp';");
             out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Project Role Unsuccessfully Added!');");
-            out.println("location='/SDRCRIS/reg_project_role.jsp';");
+            out.println("alert('Funding Organization has been Unsuccessfully Updated!');");
+            out.println("location='/SDRCRIS/reg_funding_organization.jsp';");
             out.println("</script>");
         }
     }

@@ -25,16 +25,8 @@
         <servlet-class>Controller.UpdateUser</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RegisterProjectRole</servlet-name>
-        <servlet-class>Controller.RegisterProjectRole</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegisterUserType</servlet-name>
         <servlet-class>Controller.RegisterUserType</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeactivateProjectRole</servlet-name>
-        <servlet-class>Controller.DeactivateProjectRole</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeactivateUserType</servlet-name>
@@ -140,6 +132,30 @@
         <servlet-name>UpdateProject</servlet-name>
         <servlet-class>Controller.UpdateProject</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SelectProject</servlet-name>
+        <servlet-class>Controller.SelectProject</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterUser</servlet-name>
+        <servlet-class>Controller.RegisterUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterFunding</servlet-name>
+        <servlet-class>Controller.RegisterFunding</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeactivateFunding</servlet-name>
+        <servlet-class>Controller.DeactivateFunding</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateFunding</servlet-name>
+        <servlet-class>Controller.UpdateFunding</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFunding</servlet-name>
+        <servlet-class>Controller.ViewFunding</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -165,16 +181,8 @@
         <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RegisterProjectRole</servlet-name>
-        <url-pattern>/RegisterProjectRole</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>RegisterUserType</servlet-name>
         <url-pattern>/RegisterUserType</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeactivateProjectRole</servlet-name>
-        <url-pattern>/DeactivateProjectRole</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeactivateUserType</servlet-name>
@@ -279,6 +287,30 @@
     <servlet-mapping>
         <servlet-name>UpdateProject</servlet-name>
         <url-pattern>/UpdateProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SelectProject</servlet-name>
+        <url-pattern>/SelectProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterUser</servlet-name>
+        <url-pattern>/RegisterUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterFunding</servlet-name>
+        <url-pattern>/RegisterFunding</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeactivateFunding</servlet-name>
+        <url-pattern>/DeactivateFunding</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateFunding</servlet-name>
+        <url-pattern>/UpdateFunding</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFunding</servlet-name>
+        <url-pattern>/ViewFunding</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

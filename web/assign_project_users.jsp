@@ -5,11 +5,10 @@
 --%>
 
 <%@page import="DAO.UserDAO"%>
-<%@page import="DAO.ProjectDAO"%>
 <%@page import="Model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%--<%@include file="functions/security.jsp" %>--%>
+<%@include file="functions/security.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
@@ -41,7 +40,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Register Principal Investigator</h1>
+                                        <h1>Manage Project Users</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -62,48 +61,12 @@
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Regsiter Principal Investigator</span>
+                                            <span>Manage Project Users</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!----BODY--->
-                                      <form method="post" action="RegisterPrincipalInvestigator">
-                                    
-        <div class="page-content-inner">
-                                        <!----BODY--->
-                                        <div class="row">
-                                            <div class="col-md-14">
-                                                <div class="portlet light">
-                                                    <div class="portlet-title">
-                                                        <div class="caption caption-md">
-                                                            <i class="icon-bar-chart font-dark hide"></i>
-                                                            <span class="caption-subject font-green-steel uppercase bold">SELECT A PROJECT</span>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="portlet-body">
-                                                        <div class="row list-separated">
-                                                            
-                                                            <select class="js-example-basic-single form-control" name="state" style="width:100%">
-                                                                <option value="">Alabama</option>
-                                                                <option value="WY">Wyoming</option>
-                                                              </select>
-                                                            <br>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                    </ul>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                        
-                                                                        
-                                    </div>
 
                                     <div class="page-content-inner">
                                         <!----BODY--->
@@ -113,14 +76,14 @@
                                                     <div class="portlet-title">
                                                         <div class="caption caption-md">
                                                             <i class="icon-bar-chart font-dark hide"></i>
-                                                            <span class="caption-subject font-green-steel uppercase bold">REGISTER PRINCIPAL INVESTIGATOR</span>
+                                                            <span class="caption-subject font-green-steel uppercase bold">SELECT PROJECT USERS FOR MAPPING OF HEALTH RISKS FROM THE AGENTS OF DISASTERS</span> <!---Get Project Name--->
                                                         </div>
                                                     </div>
 
                                                     <div class="portlet-body">
                                                         <div class="row list-separated">
                                                             <div class="table-responsive">
-                                                              
+                                                                <form method="post" action="ViewUser">
                                                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                         <thead>
                                                                             <tr>
@@ -131,8 +94,7 @@
                                                                                 <th width="20%">Specializations</th>                                           
                                                                                 <th width="10%">Masters</th>
                                                                                 <th width="10%">Doctorate</th>
-                                                                                <th width="10%">Registration Date</th>
-                                                                                <th width="10%"></th>    
+                                                                                <th width="10%">Add User</th>    
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
@@ -144,14 +106,12 @@
                                                                                 <th width="20%">Specializations</th>                                       
                                                                                 <th width="10%">Masters</th>
                                                                                 <th width="10%">Doctorate</th>
-                                                                                <th width="10%">Registration Date</th>
-                                                                                <th width="10%"></th>    
+                                                                                <th width="10%">Add User</th> 
 
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-                                                                            <%
-                                                                                UserDAO ud = new UserDAO();
+                                                                            <%                                                                                UserDAO ud = new UserDAO();
                                                                                 ArrayList<User> user = new ArrayList<User>();
 
                                                                                 user = ud.activeUsers();
@@ -165,22 +125,17 @@
                                                                                 <td><%= user.get(i).getSpecialization()%></td>
                                                                                 <td><% if (user.get(i).getMasteral() == null) {%> <%} else {%> <%= user.get(i).getMasteral()%> <%}%></td>
                                                                                 <td><% if (user.get(i).getDoctorate() == null) { %> <%} else {%> <%= user.get(i).getDoctorate()%> <%}%></td>
-                                                                                <td><%= user.get(i).getRegistrationDate()%></td>
-                                                                                <td align="center" >
-                                                                                    
-                                                                                  <input type="radio" name="PIID" value="<%= user.get(i).getUserID()%>"> <br>
-
-                                                                                </td> 
+                                                                                <td align="center"><input type="checkbox" name="vehicle" value="Bike"><br></td>
+                                                                                
                                                                             </tr>
                                                                             <%}%>
                                                                         </tbody>
                                                                     </table>
+                                                                </form>
                                                             </div>
                                                             <br>
                                                         </div>
-
-
-
+                                                        <a href="reg_new_user.jsp" class="btn btn-info" role="button">SELECT PROJECT USERS</a>
                                                     </div>
                                                     <ul class="list-separated list-inline-xs hide">
 
@@ -189,14 +144,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                                                        
-                                                                        
                                     </div>
 
 
-                            <input type="submit" class="btn btn-info pull-right" value="REGISTER PRINCIPAL INVESTIGATOR">
-                            
-                            </form>
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
                             </div>
@@ -229,10 +179,6 @@
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
         <jsp:include page="dependencies/bottom_resources.jsp" />
-        <script>$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-            </script>
     </body>
 
 </html>

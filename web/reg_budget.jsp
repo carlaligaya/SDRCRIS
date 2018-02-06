@@ -12,6 +12,7 @@
 
     <head>
         <jsp:include page="dependencies/top_resources.jsp" />  
+      >
     </head>
     <!-- END HEAD -->
 
@@ -114,6 +115,15 @@
 
                                                                     </div>
 
+                                                                              <div class="form-group"> 
+                                                                        <label for="exampleInputEmail1">Budget Category</label>
+                                                                    <select class="js-example-basic-single" name="state" style="width:100%">
+                                                                        <option value="AL">Alabama</option>
+                                                                          ...
+                                                                        <option value="WY">Wyoming</option>
+                                                                      </select>
+
+                                                                    </div>
                                                                     <div class="pull-left">
                                                                         <input type="submit" class="btn btn-info" value="Register Budget">
                                                                     </div>                                              

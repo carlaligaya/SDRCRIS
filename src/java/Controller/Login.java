@@ -51,34 +51,15 @@ public class Login extends HttpServlet {
                 session.setAttribute("middleName", u.getMiddleName());
                 session.setAttribute("lastName", u.getLastName());
                 session.setAttribute("email", u.getEmail());
-                session.setAttribute("userType", u.getUserType());
                 session.setAttribute("specialization", u.getSpecialization());
                 session.setAttribute("masteral", u.getMasteral());
                 session.setAttribute("doctorate", u.getDoctorate());
                 session.setAttribute("registrationDate", u.getRegistrationDate());
 
-                if (u.getUserType() == 1) {
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/dashboard.jsp");
-                    dispatcher.forward(request, response);
-                } else if (u.getUserType() == 2) {
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/dashboard.jsp");
-                    dispatcher.forward(request, response);
-                } else if (u.getUserType() == 3) {
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/dashboard.jsp");
-                    dispatcher.forward(request, response);
-                } else if (u.getUserType() == 4) {
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/dashboard.jsp");
-                    dispatcher.forward(request, response);
-                } else if (u.getUserType() == 0) {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Please wait for account user type to be set by SDRC Administrator!');");
-                    out.println("location='index.jsp';");
-                    out.println("</script>");
-                }
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/login_selection.jsp");
+                dispatcher.forward(request, response);
+
             } else {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Account is no longer active!');");

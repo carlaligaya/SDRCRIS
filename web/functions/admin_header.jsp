@@ -57,6 +57,16 @@
                                                         <i class="glyphicon glyphicon-th-list"></i> Budget Type</a>
                                                 </li>
                                               
+                                                         
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="reg_funding_organization.jsp" class="nav-link">
+                                                        <i class="glyphicon glyphicon-th-list"></i> Register Funding Organization</a>
+                                                </li>
+                                                
+                                                            <li aria-haspopup="true" class="">
+                                                    <a href="reg_funding_organization_type.jsp" class="nav-link">
+                                                        <i class="glyphicon glyphicon-th-list"></i> Register Type of Funding Organization</a>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>

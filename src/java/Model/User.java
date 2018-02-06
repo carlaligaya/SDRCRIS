@@ -17,7 +17,6 @@ public class User {
     private String email;
     private String password;
     private int userType;
-    private int role;
     private String specialization;
     private String masteral;
     private String doctorate;
@@ -78,14 +77,6 @@ public class User {
 
     public void setUserType(int userType) {
         this.userType = userType;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
     }
 
     public String getSpecialization() {

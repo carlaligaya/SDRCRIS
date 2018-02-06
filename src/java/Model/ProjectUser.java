@@ -13,7 +13,7 @@ public class ProjectUser {
 
     private int projectID;
     private int projectMember;
-    private int role;
+    private int userType;
     private String startdate;
     private String enddate;
     private int active;
@@ -46,18 +46,12 @@ public class ProjectUser {
         this.projectMember = projectMember;
     }
 
-    /**
-     * @return the role
-     */
-    public int getRole() {
-        return role;
+    public int getUserType() {
+        return userType;
     }
 
-    /**
-     * @param role the role to set
-     */
-    public void setRole(int role) {
-        this.role = role;
+    public void setUserType(int userType) {
+        this.userType = userType;
     }
 
     public String getStartdate() {

@@ -5,12 +5,10 @@
  */
 package Controller;
 
-import DAO.UserDAO;
-import Model.User;
+import DAO.ProjectDAO;
+import Model.Funding;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Carl
  */
-public class RegisterUser extends BaseServlet {
+public class RegisterFunding extends BaseServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,39 +74,23 @@ public class RegisterUser extends BaseServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        User u = new User();
-        UserDAO uDAO = new UserDAO();
+        ProjectDAO pDAO = new ProjectDAO();
+        Funding f = new Funding();
+        
+        f.setFundingorganization_name(request.getParameter("fName"));
+        f.setDescription(request.getParameter("fDescription"));
+        f.setFundingorganization_type(Integer.parseInt(request.getParameter("fType")));
 
-        u.setFirstName(request.getParameter("fn"));
-        u.setMiddleName(request.getParameter("mn"));
-        u.setLastName(request.getParameter("ln"));
-        u.setEmail(request.getParameter("em"));
-        u.setSpecialization(request.getParameter("spe"));
-        u.setMasteral(request.getParameter("mas"));
-        u.setDoctorate(request.getParameter("doc"));
-
-        if (request.getParameter("p1").equals(request.getParameter("p2"))) {
-            u.setPassword(request.getParameter("p1"));
-            
-            if (uDAO.check(request.getParameter("em"), request.getParameter("mn"))) {
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('Account Already exits!');");
-                out.println("location='/SDRCRIS/reg_new_user.jsp';");
-                out.println("</script>");
-            } else {
-                if (uDAO.RegisterUser(u)) {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Account Successfully Registered!');");
-                    out.println("location='/SDRCRIS/manage_user.jsp';");
-                    out.println("</script>");
-                }
-            }
-            
+        if (pDAO.addFundingOrganization(f)) {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Funding Organization has been Successfully Registered!');");
+            out.println("location='/SDRCRIS/reg_funding_organization.jsp';");
+            out.println("</script>");
         } else {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Passwords do not match!');");
-            out.println("location='/SDRCRIS/reg_new_user.jsp';");
-            out.println("</script>");        
+            out.println("alert('Funding Organization has been Unsuccessfully Registered!');");
+            out.println("location='/SDRCRIS/reg_funding_organization.jsp';");
+            out.println("</script>");
         }
     }
 

@@ -300,7 +300,7 @@ public class UserDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT * FROM `sdrcris`.user WHERE `active` = 1 AND `usertype` = 4;";
+            String query = "SELECT * FROM `sdrcris`.user WHERE `active` = 1 AND `usertype` = 4;"
             PreparedStatement ps = con.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -525,6 +525,7 @@ public class UserDAO {
 
                 t.setUsertype(rs.getInt("usertypeID"));
                 t.setName(rs.getString("name"));
+                t.setDescription(rs.getString("description"));
                 t.setActive(rs.getInt("active"));
 
                 types.add(t);
@@ -574,7 +575,7 @@ public class UserDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "UPDATE `sdrcris`.user SET `usertype` = 2 WHERE `userID` = ?;";
+            String query = "UPDATE `sdrcris`.user SET `usertype` = 2 WHERE `userID` = ?;"
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, pID);

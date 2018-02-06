@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import DAO.RolesDAO;
+import DAO.ProjectUserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author carl_
+ * @author Carl
  */
-public class DeactivateProjectRole extends BaseServlet {
+public class SelectProject extends BaseServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +31,7 @@ public class DeactivateProjectRole extends BaseServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -72,20 +73,14 @@ public class DeactivateProjectRole extends BaseServlet {
 
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
-        RolesDAO rDAO = new RolesDAO();
-        PrintWriter out = response.getWriter();
+        ProjectUserDAO pDAO = new ProjectUserDAO();
+        int uty = pDAO.getProjectUserType(Integer.parseInt(request.getParameter("pID")), Integer.parseInt(session.getAttribute("userID").toString()));
+           
+        session.setAttribute("usertype", uty);
 
-        if (rDAO.DeactivateRole(Integer.parseInt(request.getParameter("rID")))) {
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Project Role Successfully Deactivated!');");
-            out.println("location='/SDRCRIS/reg_project_role.jsp';");
-            out.println("</script>");
-        } else {
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Project Role Deactivation Unseccessful!');");
-            out.println("location='/SDRCRIS/reg_project_role.jsp';");
-            out.println("</script>");
-        }
+        ServletContext context = getServletContext();
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/dashboard.jsp");
+        dispatcher.forward(request, response);
     }
 
 }

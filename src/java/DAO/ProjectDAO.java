@@ -123,8 +123,7 @@ public class ProjectDAO {
                 user.setMiddleName(rs.getString("middlename"));
                 user.setLastName(rs.getString("lastname"));
                 user.setEmail(rs.getString("email"));
-                user.setUserType(rs.getInt("usertype"));
-                user.setRole(rs.getInt("role"));
+                user.setUserType(rs.getInt("userType"));
                 user.setSpecialization(rs.getString("specializations"));
                 user.setMasteral(rs.getString("masters"));
                 user.setDoctorate(rs.getString("doctorate"));
@@ -317,77 +316,6 @@ public class ProjectDAO {
         return false;
     }
 
-    public boolean addProjectUser(ProjectUser pu) {
-        try {
-            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-            Connection con = myFactory.getConnection();
-
-            String query = "INSERT INTO `sdrcris`.`project_user`"
-                    + "(`projectID`,`projectMember`,`role`,`startdate`)"
-                    + "VALUES(?,?,?,?);";
-            PreparedStatement ps = con.prepareStatement(query);
-
-            ps.setInt(1, pu.getProjectID());
-            ps.setInt(2, pu.getProjectMember());
-            ps.setInt(3, pu.getRole());
-            ps.setDate(4, (java.sql.Date) new Date());
-
-            ps.executeUpdate();
-            ps.close();
-            con.close();
-
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-    public boolean DeactivateProjectUser(ProjectUser pu) {
-        try {
-            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-            Connection con = myFactory.getConnection();
-            String query = "UPDATE `sdrcris`.project_user SET `enddate` = ? AND `active` = 0 WHERE `projectID` = ? AND `projectMember` = ? AND `role` = ?;";
-            PreparedStatement ps = con.prepareStatement(query);
-
-            ps.setDate(1, (java.sql.Date) new Date());
-            ps.setInt(2, pu.getProjectID());
-            ps.setInt(3, pu.getProjectMember());
-            ps.setInt(4, pu.getRole());
-
-            ps.executeUpdate();
-            ps.close();
-            con.close();
-
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-//    public boolean editRole(int pID, int uID, int role) {
-//        try {
-//            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-//            Connection con = myFactory.getConnection();
-//
-//            String query = "UPDATE project_user SET role = ? WHERE projectID = ? AND projectMember = ?;";
-//            PreparedStatement ps = con.prepareStatement(query);
-//
-//            ps.setInt(1, role);
-//            ps.setInt(2, pID);
-//            ps.setInt(3, uID);
-//
-//            ps.executeUpdate();
-//            ps.close();
-//            con.close();
-//
-//            return true;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return false;
-//    }
     public boolean addFundingOrganization(Funding f) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
