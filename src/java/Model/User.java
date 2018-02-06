@@ -22,6 +22,7 @@ public class User {
     private String doctorate;
     private String registrationDate;
     private int active;
+    private int admin;
 
     public int getUserID() {
         return userID;
@@ -118,6 +119,15 @@ public class User {
     public void setActive(int active) {
         this.active = active;
     }
+    
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+    
     
     
 }

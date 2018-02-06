@@ -74,7 +74,7 @@ public class SelectProject extends BaseServlet {
     @Override
     protected void servletAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         ProjectUserDAO pDAO = new ProjectUserDAO();
-        int uty = pDAO.getProjectUserType(Integer.parseInt(request.getParameter("pID")), Integer.parseInt(session.getAttribute("userID").toString()));
+        int uty = pDAO.getProjectUserType(Integer.parseInt(request.getParameter("proID")), Integer.parseInt(session.getAttribute("userID").toString()));
            
         session.setAttribute("usertype", uty);
 

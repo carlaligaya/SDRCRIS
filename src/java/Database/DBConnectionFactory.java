@@ -15,7 +15,7 @@ public abstract class DBConnectionFactory {
     
     String url = "jdbc:mysql://localhost:3306/sdrcris";
     String username = "root";
-    String password = "CarlaligayA";
+    String password = "";
 
     /**
      *

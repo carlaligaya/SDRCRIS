@@ -156,6 +156,22 @@
         <servlet-name>ViewFunding</servlet-name>
         <servlet-class>Controller.ViewFunding</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterFundingType</servlet-name>
+        <servlet-class>Controller.RegisterFundingType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateFundingType</servlet-name>
+        <servlet-class>Controller.UpdateFundingType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFundingType</servlet-name>
+        <servlet-class>Controller.ViewFundingType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeactivateFundingType</servlet-name>
+        <servlet-class>Controller.DeactivateFundingType</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -311,6 +327,22 @@
     <servlet-mapping>
         <servlet-name>ViewFunding</servlet-name>
         <url-pattern>/ViewFunding</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterFundingType</servlet-name>
+        <url-pattern>/RegisterFundingType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateFundingType</servlet-name>
+        <url-pattern>/UpdateFundingType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFundingType</servlet-name>
+        <url-pattern>/ViewFundingType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeactivateFundingType</servlet-name>
+        <url-pattern>/DeactivateFundingType</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

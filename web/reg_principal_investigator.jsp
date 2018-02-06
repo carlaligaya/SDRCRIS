@@ -4,6 +4,7 @@
     Author     : RDE
 --%>
 
+<%@page import="Model.Project"%>
 <%@page import="DAO.UserDAO"%>
 <%@page import="DAO.ProjectDAO"%>
 <%@page import="Model.User"%>
@@ -67,60 +68,66 @@
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!----BODY--->
-                                      <form method="post" action="RegisterPrincipalInvestigator">
-                                    
-        <div class="page-content-inner">
-                                        <!----BODY--->
-                                        <div class="row">
-                                            <div class="col-md-14">
-                                                <div class="portlet light">
-                                                    <div class="portlet-title">
-                                                        <div class="caption caption-md">
-                                                            <i class="icon-bar-chart font-dark hide"></i>
-                                                            <span class="caption-subject font-green-steel uppercase bold">SELECT A PROJECT</span>
-                                                        </div>
-                                                    </div>
+                                    <form method="post" action="RegisterPrincipalInvestigator">
 
-                                                    <div class="portlet-body">
-                                                        <div class="row list-separated">
-                                                            
-                                                            <select class="js-example-basic-single form-control" name="state" style="width:100%">
-                                                                <option value="">Alabama</option>
-                                                                <option value="WY">Wyoming</option>
-                                                              </select>
-                                                            <br>
+                                        <div class="page-content-inner">
+                                            <!----BODY--->
+                                            <div class="row">
+                                                <div class="col-md-14">
+                                                    <div class="portlet light">
+                                                        <div class="portlet-title">
+                                                            <div class="caption caption-md">
+                                                                <i class="icon-bar-chart font-dark hide"></i>
+                                                                <span class="caption-subject font-green-steel uppercase bold">SELECT A PROJECT</span>
+                                                            </div>
                                                         </div>
 
+                                                        <div class="portlet-body">
+                                                            <div class="row list-separated">
+                                                                <select class="js-example-basic-single form-control" name="proj" style="width:100%">
+                                                                    <%
+                                                                        ProjectDAO pDAO = new ProjectDAO(); 
+                                                                        ArrayList<Project> projs = new ArrayList<Project>();
+                                                                        
+                                                                        projs = pDAO.getProjectForAssigning();
+                                                                        for(int i=0; i<projs.size(); i++){
+                                                                    %>
+                                                                    <option value="<%= projs.get(i).getProjectID() %>"><%= projs.get(i).getName()%></option>
+                                                                    <%}%>
+                                                                </select>
+                                                                <br>
+                                                            </div>
 
+
+
+                                                        </div>
+                                                        <ul class="list-separated list-inline-xs hide">
+
+                                                        </ul>
 
                                                     </div>
-                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                    </ul>
-
                                                 </div>
                                             </div>
+
+
                                         </div>
-                                                                        
-                                                                        
-                                    </div>
 
-                                    <div class="page-content-inner">
-                                        <!----BODY--->
-                                        <div class="row">
-                                            <div class="col-md-14">
-                                                <div class="portlet light">
-                                                    <div class="portlet-title">
-                                                        <div class="caption caption-md">
-                                                            <i class="icon-bar-chart font-dark hide"></i>
-                                                            <span class="caption-subject font-green-steel uppercase bold">REGISTER PRINCIPAL INVESTIGATOR</span>
+                                        <div class="page-content-inner">
+                                            <!----BODY--->
+                                            <div class="row">
+                                                <div class="col-md-14">
+                                                    <div class="portlet light">
+                                                        <div class="portlet-title">
+                                                            <div class="caption caption-md">
+                                                                <i class="icon-bar-chart font-dark hide"></i>
+                                                                <span class="caption-subject font-green-steel uppercase bold">REGISTER PRINCIPAL INVESTIGATOR</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="portlet-body">
-                                                        <div class="row list-separated">
-                                                            <div class="table-responsive">
-                                                              
+                                                        <div class="portlet-body">
+                                                            <div class="row list-separated">
+                                                                <div class="table-responsive">
+
                                                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                         <thead>
                                                                             <tr>
@@ -167,36 +174,36 @@
                                                                                 <td><% if (user.get(i).getDoctorate() == null) { %> <%} else {%> <%= user.get(i).getDoctorate()%> <%}%></td>
                                                                                 <td><%= user.get(i).getRegistrationDate()%></td>
                                                                                 <td align="center" >
-                                                                                    
-                                                                                  <input type="radio" name="PIID" value="<%= user.get(i).getUserID()%>"> <br>
+
+                                                                                    <input type="radio" name="PIID" value="<%= user.get(i).getUserID()%>"> <br>
 
                                                                                 </td> 
                                                                             </tr>
                                                                             <%}%>
                                                                         </tbody>
                                                                     </table>
+                                                                </div>
+                                                                <br>
                                                             </div>
-                                                            <br>
+
+
+
                                                         </div>
+                                                        <ul class="list-separated list-inline-xs hide">
 
-
+                                                        </ul>
 
                                                     </div>
-                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                    </ul>
-
                                                 </div>
                                             </div>
+
+
                                         </div>
-                                                                        
-                                                                        
-                                    </div>
 
 
-                            <input type="submit" class="btn btn-info pull-right" value="REGISTER PRINCIPAL INVESTIGATOR">
-                            
-                            </form>
+                                        <input type="submit" class="btn btn-info pull-right" value="REGISTER PRINCIPAL INVESTIGATOR">
+
+                                    </form>
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
                             </div>
@@ -229,10 +236,10 @@
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
         <jsp:include page="dependencies/bottom_resources.jsp" />
-        <script>$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-            </script>
+        <script>$(document).ready(function () {
+                $('.js-example-basic-single').select2();
+            });
+        </script>
     </body>
 
 </html>

@@ -126,7 +126,7 @@
                                                                                 <td><% if (user.get(i).getMasteral() == null) {%> <%} else {%> <%= user.get(i).getMasteral()%> <%}%></td>
                                                                                 <td><% if (user.get(i).getDoctorate() == null) { %> <%} else {%> <%= user.get(i).getDoctorate()%> <%}%></td>
                                                                                 <td align="center"><input type="checkbox" name="vehicle" value="Bike"><br></td>
-                                                                                
+
                                                                             </tr>
                                                                             <%}%>
                                                                         </tbody>

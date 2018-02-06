@@ -77,13 +77,13 @@ public class UpdateFunding extends BaseServlet {
         ProjectDAO pDAO = new ProjectDAO();
         Funding f = new Funding();
         
-        f.setFundingorganizationID(Integer.parseInt(session.getAttribute("funding").toString()));
+        f.setFundingorganizationID(Integer.parseInt(session.getAttribute("funds").toString()));
         f.setFundingorganization_name(request.getParameter("fName"));
         f.setDescription(request.getParameter("fDescription"));
         f.setFundingorganization_type(Integer.parseInt(request.getParameter("fType")));
 
         if (pDAO.updateFunding(f)) {
-            session.setAttribute("funding", null);
+            session.setAttribute("funds", null);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Funding Organization has been Successfully Updated!');");
             out.println("location='/SDRCRIS/reg_funding_organization.jsp';");

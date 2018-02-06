@@ -1,4 +1,4 @@
- <meta charset="utf-8" />
+         <meta charset="utf-8" />
         <title>SDRC-RIS: Dashboard</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -18,6 +18,8 @@
         <link href="assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         
+            <link href="assets/pages/css/dropzone.css" rel="stylesheet">
+
         <!----Seelct 2--->
         <link href="assets/pages/css/select2.min.css" rel="stylesheet" type="text/css" />
 

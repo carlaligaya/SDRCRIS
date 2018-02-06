@@ -62,7 +62,7 @@
     <script src="assets/layouts/jquery-datatable/extensions/export/vfs_fonts.js"></script>
     <script src="assets/layouts/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="assets/layouts/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-    
+     <script src="js/dropzone.js"></script>
     <script src="js/pages/tables/jquery-datatable.js"></script>
         <script>
             $(document).ready(function()

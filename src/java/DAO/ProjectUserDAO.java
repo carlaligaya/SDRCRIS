@@ -170,7 +170,7 @@ public class ProjectUserDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT userType FROM `sdrcris`.project_user WHERE projectID = ? AND userID=?;";
+            String query = "SELECT userType FROM `sdrcris`.project_user WHERE projectID = ? AND projectMember=?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, pID);

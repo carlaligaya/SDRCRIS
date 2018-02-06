@@ -4,9 +4,9 @@
     Author     : RDE
 --%>
 
-<%@page import="Model.ExpenseCategory"%>
+<%@page import="Model.FundingOrganizationType"%>
+<%@page import="DAO.FundingDAO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DAO.ExpenseDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="functions/security.jsp" %>
 <!DOCTYPE html>
@@ -79,12 +79,13 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <%                                                                    ExpenseCategory ec = new ExpenseCategory();
-                                                                    ExpenseDAO eDAO = new ExpenseDAO();
-                                                                    if (session.getAttribute("category") != null) {
-                                                                        ec = eDAO.getExpenseCategory(Integer.parseInt(session.getAttribute("category").toString()));
+                                                                <%  
+                                                                    FundingOrganizationType ft = new FundingOrganizationType();
+                                                                    FundingDAO fDAO = new FundingDAO();
+                                                                    if (session.getAttribute("fotype") != null) {
+                                                                        ft = fDAO.getFundingType(Integer.parseInt(session.getAttribute("fotype").toString()));
                                                                 %>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE EXPENSE CATEGORY</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE FUNDING ORGANIZATION TYPE</span>
                                                                 <%} else {%>
                                                                 <span class="caption-subject font-green-steel uppercase bold">REGISTER FUNDING ORGANIZATION TYPE</span>
                                                                 <%}%>
@@ -94,14 +95,14 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10" action="RegisterExpenseCategory" method="post">
+                                                                <form class="col-md-10" action="RegisterFundingType" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="ECname" <% if (session.getAttribute("category") != null) {%> value="<%= ec.getName()%>" <%}%> required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="FTname" <% if (session.getAttribute("fotype") != null) {%> value="<%= ft.getName()%>" <%}%> required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="ECdescription" required><% if (session.getAttribute("cetegory") != null) {%> <%= ec.getDescription()%> <%}%></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="FTdescription" required><% if (session.getAttribute("fotype") != null) {%> <%= ft.getDescription()%> <%}%></textarea>
 
                                                                     </div>
 
@@ -110,9 +111,9 @@
 
                                                                     <div class="pull-left">
                                                                         <%
-                                                                            if (session.getAttribute("category") != null) {
+                                                                            if (session.getAttribute("fotype") != null) {
                                                                         %>
-                                                                        <input type="submit" class="btn btn-info" value="Update Funding Organization Type" onclick="form.action = 'UpdateExpenseCategory';">
+                                                                        <input type="submit" class="btn btn-info" value="Update Funding Organization Type" onclick="form.action = 'UpdateFundingType';">
                                                                         <%} else {%>
                                                                         <input type="submit" class="btn btn-info" value="Register Funding Organization Type">
                                                                         <%}%>
@@ -141,7 +142,7 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <form class="col-md-10" action="ViewExpenseCategory" method="post">
+                                                                    <form class="col-md-10" action="ViewFundingType" method="post">
                                                                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                             <thead>
                                                                                 <tr>
@@ -161,17 +162,17 @@
                                                                             </tfoot>
                                                                             <tbody>
                                                                                 <%
-                                                                                    ArrayList<ExpenseCategory> categories = new ArrayList<ExpenseCategory>();
+                                                                                    ArrayList<FundingOrganizationType> types = new ArrayList<FundingOrganizationType>();
 
-                                                                                    categories = eDAO.getActiveCategories();
+                                                                                    types = fDAO.getActiveOrganizationTypes();
 
-                                                                                    for (int i = 0; i < categories.size(); i++) {
+                                                                                    for (int i = 0; i < types.size(); i++) {
                                                                                 %>
                                                                                 <tr>
-                                                                                    <td><%= categories.get(i).getName()%></td>
-                                                                                    <td><%= categories.get(i).getDescription()%></td>
-                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateExpenseCategory' ;">Deactivate</button></td>               
-                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" >Update</button></td>               
+                                                                                    <td><%= types.get(i).getName()%></td>
+                                                                                    <td><%= types.get(i).getDescription()%></td>
+                                                                                    <td><button name="foID" value="<%= types.get(i).getFundingorganization_typeID() %>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateFundingType';">Deactivate</button></td>               
+                                                                                    <td><button name="foID" value="<%= types.get(i).getFundingorganization_typeID()%>" class="btn btn-info pull-right" >Update</button></td>               
                                                                                 </tr>
                                                                                 <%}%>
                                                                             </tbody>

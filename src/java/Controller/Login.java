@@ -56,9 +56,17 @@ public class Login extends HttpServlet {
                 session.setAttribute("doctorate", u.getDoctorate());
                 session.setAttribute("registrationDate", u.getRegistrationDate());
 
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/login_selection.jsp");
-                dispatcher.forward(request, response);
+                if (u.getAdmin() == 1) {
+                    session.setAttribute("usertype", 1);
+
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/dashboard.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/login_selection.jsp");
+                    dispatcher.forward(request, response);
+                }
 
             } else {
                 out.println("<script type=\"text/javascript\">");

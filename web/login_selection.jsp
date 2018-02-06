@@ -4,8 +4,11 @@
     Author     : RDE
 --%>
 
+<%@page import="DAO.UserDAO"%>
 <%@page import="DAO.ProjectDAO"%>
 <%@page import="Model.Project"%>
+<%@page import="DAO.ProjectUserDAO"%>
+<%@page import="Model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="functions/security.jsp" %>
@@ -75,7 +78,7 @@
                                                     <div class="portlet-body">
                                                         <div class="row list-separated">
                                                             <div class="table-responsive">
-                                                                <form method="post" action="ViewProject">
+                                                                <form method="post" action="SelectProject">
                                                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                         <thead>
                                                                             <tr>
@@ -99,7 +102,7 @@
                                                                             <%                                                                                ProjectDAO pd = new ProjectDAO();
                                                                                 ArrayList<Project> projects = new ArrayList<Project>();
 
-                                                                                projects = pd.getActiveProjects();
+                                                                                projects = pd.getProjects(Integer.parseInt(session.getAttribute("userID").toString()));
 
                                                                                 for (int i = 0; i < projects.size(); i++) {
                                                                             %>
@@ -107,10 +110,15 @@
                                                                                 <td><%= projects.get(i).getName()%></td>
                                                                                 <td><%= projects.get(i).getDescription()%></td>
                                                                                 <td><%= projects.get(i).getStartdate()%></td>
-                                                                                <td></td>
-                                                                               
+                                                                                
+                                                                                <% ProjectUserDAO pud = new ProjectUserDAO();
+                                                                                UserDAO ud = new UserDAO();
+                                                                               int type = pud.getProjectUserType(projects.get(i).getProjectID(), Integer.parseInt(session.getAttribute("userID").toString()));
+                                                                               %>
+                                                                                
+                                                                               <td><%= ud.getType(type)%></td>
                                                                                 <td>  
-                                                                                    <button name="pID" type="submit" class="btn btn-info btn-lg" value="<%= projects.get(i).getProjectID()%>" />
+                                                                                    <button name="proID" type="submit" class="btn btn-info btn-lg" value="<%= projects.get(i).getProjectID()%>" />
                                                                                     <span class="glyphicon glyphicon-triangle-right"></span>
                                                                                 </td>
                                                                             </tr>

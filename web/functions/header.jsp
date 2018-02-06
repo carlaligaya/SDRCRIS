@@ -299,7 +299,7 @@
             <div class="hor-menu">
 
 
-                <%                       int ut = Integer.parseInt(session.getAttribute("userType").toString());
+                <%                       int ut = Integer.parseInt(session.getAttribute("usertype").toString());
 
                     if (ut == 1) {
                 %>

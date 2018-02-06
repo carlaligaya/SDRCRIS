@@ -60,7 +60,7 @@ public class Signup extends HttpServlet {
             } else {
                 if (uDAO.RegisterUser(u)) {
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Account Successfully Registered. Please wait for account user type to be assigned!');");
+                    out.println("alert('Account Successfully Registered!');");
                     out.println("location='index.jsp';");
                     out.println("</script>");
                 }

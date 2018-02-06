@@ -4,7 +4,11 @@
     Author     : RDE
 --%>
 
-<%@page import="Model.ExpenseCategory"%>
+<%@page import="Model.Project"%>
+<%@page import="Model.Funding"%>
+<%@page import="Model.FundingOrganizationType"%>
+<%@page import="DAO.FundingDAO"%>
+<%@page import="DAO.ProjectDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.ExpenseDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -79,12 +83,13 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <%                                                                    ExpenseCategory ec = new ExpenseCategory();
-                                                                    ExpenseDAO eDAO = new ExpenseDAO();
-                                                                    if (session.getAttribute("category") != null) {
-                                                                        ec = eDAO.getExpenseCategory(Integer.parseInt(session.getAttribute("category").toString()));
+                                                                <%                                                                    Funding f = new Funding();
+                                                                    ProjectDAO pDAO = new ProjectDAO();
+                                                                    FundingDAO fDAO = new FundingDAO();
+                                                                    if (session.getAttribute("funds") != null) {
+                                                                        f = pDAO.getFunding(Integer.parseInt(session.getAttribute("funds").toString()));
                                                                 %>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE EXPENSE CATEGORY</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPDATE FUNDING ORGANIZATION</span>
                                                                 <%} else {%>
                                                                 <span class="caption-subject font-green-steel uppercase bold">REGISTER FUNDING ORGANIZATION</span>
                                                                 <%}%>
@@ -94,34 +99,46 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10" action="RegisterExpenseCategory" method="post">
+                                                                <form class="col-md-10" action="RegisterFunding" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="ECname" <% if (session.getAttribute("category") != null) {%> value="<%= ec.getName()%>" <%}%> required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="fName" <% if (session.getAttribute("funds") != null) {%> value="<%= f.getFundingorganization_name()%>" <%}%> required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="ECdescription" required><% if (session.getAttribute("cetegory") != null) {%> <%= ec.getDescription()%> <%}%></textarea>
-
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="fDescription" required><% if (session.getAttribute("funds") != null) {%> <%= f.getDescription()%> <%}%></textarea>
                                                                     </div>
-                                                                        
+                                                                    <%
+                                                                        if (session.getAttribute("funds") != null) {
+                                                                    %>
                                                                     <div class="form-group">
-                                                                          <label for="exampleInputEmail1">Select Funding Organization </label>
-                                                                      
-                                                                        <select class="js-example-basic-single" style="width:100%" name="state">
-                                                                          <option value="AL">Alabama</option>
-                                                                            ...
-                                                                          <option value="WY">Wyoming</option>
+                                                                        <label for="exampleInputEmail1">Current Funding Organization Type</label>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" value="<%= fDAO.getType(pDAO.getFunding(Integer.parseInt(session.getAttribute("funds").toString())).getFundingorganization_type()) %>" disabled>
+                                                                    </div>
+                                                                    <%}%>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Select Funding Organization Type</label>
+                                                                        <select class="js-example-basic-single form-control" style="width:100%" name="fType">
+                                                                            <%
+                                                                                ArrayList<FundingOrganizationType> ft = new ArrayList<FundingOrganizationType>();
+
+                                                                                ft = fDAO.getActiveOrganizationTypes();
+                                                                                for (int i = 0; i < ft.size(); i++) {
+                                                                            %>
+                                                                            <%
+                                                                                if (session.getAttribute("funds") != null) {
+                                                                            %>
+                                                                            <option value="<%= f.getFundingorganizationID() %>" selected="selected"><%= fDAO.getType(f.getFundingorganization_type()) %></option>
+                                                                            <%}%>
+                                                                            <option value="<%= ft.get(i).getFundingorganization_typeID()%>"><%= ft.get(i).getName()%></option>
+                                                                            <%}%>
                                                                         </select>
-                                                                        </div>
-
-
-
+                                                                    </div>
                                                                     <div class="pull-left">
                                                                         <%
-                                                                            if (session.getAttribute("category") != null) {
+                                                                            if (session.getAttribute("funds") != null) {
                                                                         %>
-                                                                        <input type="submit" class="btn btn-info" value="Update Funding Organization" onclick="form.action = 'UpdateExpenseCategory';">
+                                                                        <input type="submit" class="btn btn-info" value="Update Funding Organization" onclick="form.action = 'UpdateFunding';">
                                                                         <%} else {%>
                                                                         <input type="submit" class="btn btn-info" value="Register Funding Organization">
                                                                         <%}%>
@@ -150,7 +167,7 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <form class="col-md-10" action="ViewExpenseCategory" method="post">
+                                                                    <form class="col-md-10" action="ViewFunding" method="post">
                                                                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                             <thead>
                                                                                 <tr>
@@ -170,17 +187,16 @@
                                                                             </tfoot>
                                                                             <tbody>
                                                                                 <%
-                                                                                    ArrayList<ExpenseCategory> categories = new ArrayList<ExpenseCategory>();
+                                                                                    ArrayList<Funding> fund = new ArrayList<Funding>();
+                                                                                    fund = pDAO.getActiveFundingOrgs();
 
-                                                                                    categories = eDAO.getActiveCategories();
-
-                                                                                    for (int i = 0; i < categories.size(); i++) {
+                                                                                    for (int i = 0; i < fund.size(); i++) {
                                                                                 %>
                                                                                 <tr>
-                                                                                    <td><%= categories.get(i).getName()%></td>
-                                                                                    <td><%= categories.get(i).getDescription()%></td>
-                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateExpenseCategory' ;">Deactivate</button></td>               
-                                                                                    <td><button name="ECID" value="<%= categories.get(i).getExpensecategoryID()%>" class="btn btn-info pull-right" >Update</button></td>               
+                                                                                    <td><%= fund.get(i).getFundingorganization_name()%></td>
+                                                                                    <td><%= fund.get(i).getDescription()%></td>
+                                                                                    <td><button name="fID" value="<%= fund.get(i).getFundingorganizationID()%>" class="btn btn-info pull-right" onclick="form.action = 'DeactivateFunding';">Deactivate</button></td>               
+                                                                                    <td><button name="fID" value="<%= fund.get(i).getFundingorganizationID()%>" class="btn btn-info pull-right" >Update</button></td>               
                                                                                 </tr>
                                                                                 <%}%>
                                                                             </tbody>
@@ -233,9 +249,9 @@
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
         <jsp:include page="dependencies/bottom_resources.jsp" />
-        <script>$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});</script>
+        <script>$(document).ready(function () {
+                $('.js-example-basic-single').select2();
+            });</script>
     </body>
 
 </html>

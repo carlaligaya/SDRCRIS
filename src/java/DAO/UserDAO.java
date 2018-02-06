@@ -118,11 +118,11 @@ public class UserDAO {
                 user.setMiddleName(rs.getString("middlename"));
                 user.setLastName(rs.getString("lastname"));
                 user.setEmail(rs.getString("email"));
-                user.setUserType(rs.getInt("usertype"));
                 user.setSpecialization(rs.getString("specializations"));
                 user.setMasteral(rs.getString("masters"));
                 user.setDoctorate(rs.getString("doctorate"));
                 user.setRegistrationDate(rs.getString("registrationdate"));
+                user.setAdmin(rs.getInt("admin"));
             }
 
             ps.close();
@@ -157,12 +157,12 @@ public class UserDAO {
                 user.setMiddleName(rs.getString("middlename"));
                 user.setLastName(rs.getString("lastname"));
                 user.setEmail(rs.getString("email"));
-                user.setUserType(rs.getInt("usertype"));
                 user.setSpecialization(rs.getString("specializations"));
                 user.setMasteral(rs.getString("masters"));
                 user.setDoctorate(rs.getString("doctorate"));
                 user.setRegistrationDate(rs.getString("registrationdate"));
                 user.setActive(rs.getInt("active"));
+                user.setAdmin(rs.getInt("admin"));
             }
 
             ps.close();
@@ -276,7 +276,6 @@ public class UserDAO {
                 user.setMiddleName(rs.getString("middlename"));
                 user.setLastName(rs.getString("lastname"));
                 user.setEmail(rs.getString("email"));
-                user.setUserType(rs.getInt("usertype"));
                 user.setSpecialization(rs.getString("specializations"));
                 user.setMasteral(rs.getString("masters"));
                 user.setDoctorate(rs.getString("doctorate"));
@@ -300,7 +299,7 @@ public class UserDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT * FROM `sdrcris`.user WHERE `active` = 1 AND `usertype` = 4;"
+            String query = "SELECT * FROM `sdrcris`.user WHERE `active` = 1 AND `usertype` = 4;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -312,7 +311,6 @@ public class UserDAO {
                 user.setMiddleName(rs.getString("middlename"));
                 user.setLastName(rs.getString("lastname"));
                 user.setEmail(rs.getString("email"));
-                user.setUserType(rs.getInt("usertype"));
                 user.setSpecialization(rs.getString("specialization"));
                 user.setMasteral(rs.getString("masters"));
                 user.setDoctorate(rs.getString("doctorate"));
@@ -348,7 +346,6 @@ public class UserDAO {
                 user.setMiddleName(rs.getString("middlename"));
                 user.setLastName(rs.getString("lastname"));
                 user.setEmail(rs.getString("email"));
-                user.setUserType(rs.getInt("usertype"));
                 user.setSpecialization(rs.getString("specialization"));
                 user.setMasteral(rs.getString("masters"));
                 user.setDoctorate(rs.getString("doctorate"));

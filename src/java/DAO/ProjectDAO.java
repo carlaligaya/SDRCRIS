@@ -33,7 +33,6 @@ import Model.User;
 public class ProjectDAO {
 
     public boolean RegisterProject(Project u) {
-        
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -176,7 +175,7 @@ public class ProjectDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT * FROM `sdrcris`.project p JOIN `sdrcris`.project_user pu ON p.projectID=pu.projectID WHERE pu.projectMember=? ORDER BY p.projectID;";
+            String query = "SELECT * FROM `sdrcris`.project p JOIN `sdrcris`.project_user pu ON p.projectID=pu.projectID WHERE pu.projectMember=? AND p.active=1 ORDER BY p.projectID;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, projectMemberID);
@@ -237,7 +236,7 @@ public class ProjectDAO {
 
         return projects;
     }
-    
+
     public ArrayList<Project> getActiveProjects() {
         ArrayList<Project> projects = new ArrayList<Project>();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -269,6 +268,40 @@ public class ProjectDAO {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return projects;
+    }
+
+    public ArrayList<Project> getProjectForAssigning() {
+        ArrayList<Project> projects = new ArrayList<Project>();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection con = myFactory.getConnection();
+
+            String query = "SELECT * FROM project WHERE projectID NOT IN (SELECT projectID FROM project_user);";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Project p = new Project();
+
+                p.setProjectID(rs.getInt("projectID"));
+                p.setName(rs.getString("name"));
+                p.setDescription(rs.getString("description"));
+                p.setStartdate(df.format(rs.getDate("startdate")));
+                p.setEnddate(df.format(rs.getDate("enddate")));
+                p.setActive(rs.getInt("active"));
+
+                projects.add(p);
+            }
+            ps.close();
+            con.close();
+            return projects;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return projects;
     }
 
@@ -348,7 +381,7 @@ public class ProjectDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT * FROM `sdrcris`.funding WHERE `funding_projectID` = ?;";
+            String query = "SELECT * FROM `sdrcris`.funding WHERE `fundingorganizationID` = ?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, fID);
@@ -402,7 +435,7 @@ public class ProjectDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "UPDATE `sdrcris`.funding SET `active` = 0, WHERE fundingorganizationID = ?;";
+            String query = "UPDATE `sdrcris`.funding SET `active` = 0 WHERE fundingorganizationID = ?;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, fID);
@@ -418,14 +451,14 @@ public class ProjectDAO {
         return false;
     }
 
-    public ArrayList<Funding> getFundingOrgs() {
+    public ArrayList<Funding> getActiveFundingOrgs() {
         ArrayList<Funding> funds = new ArrayList<Funding>();
 
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection con = myFactory.getConnection();
 
-            String query = "SELECT * FROM `sdrcris`.funding ORDER BY `fundingorganizationID`;";
+            String query = "SELECT * FROM `sdrcris`.funding WHERE `active` = 1 ORDER BY `fundingorganizationID`;";
             PreparedStatement ps = con.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
